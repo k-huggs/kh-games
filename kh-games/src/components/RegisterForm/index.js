@@ -20,12 +20,10 @@ const RegistrationFrom = () => {
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = (event) => {
-    event.preventDefault();
     setLoading(true);
     setReg(reg);
     postUser(reg)
       .then((res) => {
-        console.log(res);
         setLoading(false);
       })
       .catch((error) => {

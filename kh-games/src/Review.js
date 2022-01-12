@@ -2,7 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 // Data
-import { getReview, patchLike } from "./utils/api";
+import { getReview, patchReviewLikes } from "./utils/api";
+
+//Components
+import Comments from "./components/CommentsSection";
 
 const Review = () => {
   const { reviewId } = useParams();
@@ -25,7 +28,7 @@ const Review = () => {
     setLikes((currLikes) => {
       return currLikes + 1;
     });
-    patchLike(reviewId, 1)
+    patchReviewLikes(reviewId, 1)
       .then((res) => {
         console.log(res);
       })
@@ -39,7 +42,7 @@ const Review = () => {
       return currLikes - 1;
     });
 
-    patchLike(reviewId, -1)
+    patchReviewLikes(reviewId, -1)
       .then((res) => {
         console.log(res);
         return res;
@@ -61,6 +64,9 @@ const Review = () => {
         👎
       </button>
       <p>{review.votes + likes}</p>
+      <div>
+        <Comments reviewId={reviewId} />
+      </div>
     </>
   );
 };

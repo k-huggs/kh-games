@@ -12,7 +12,6 @@ export const getReviews = (sort_by, category, order) => {
       order: order,
     })
     .then((res) => {
-      console.log(res.data, "<<< Server Data");
       return res.data;
     });
 };
@@ -36,7 +35,6 @@ export const getCategories = () => {
 };
 
 export const postUser = ({ username, name, avatar_url }) => {
-  // console.log(username, name, avatarUrl);
   return gameApi
     .post("/users", { username: username, name: name, avatar_url: avatar_url })
     .then((res) => {
@@ -45,10 +43,46 @@ export const postUser = ({ username, name, avatar_url }) => {
     .catch((error) => {});
 };
 
-export const patchLike = (reviewId, likes) => {
+export const patchReviewLikes = (reviewId, likes) => {
   return gameApi
     .patch(`/reviews/${reviewId}`, { inc_votes: likes })
     .then((res) => {
       return res.data.updatedReview;
     });
+};
+
+export const getComments = (reviewId) => {
+  return gameApi.get(`/reviews/${reviewId}/comments`).then((res) => {
+    return res.data;
+  });
+};
+
+export const patchCommentLikes = (reviewId, commentId, likes) => {
+  return gameApi
+    .patch(`/comments/${commentId}`, { inc_votes: likes })
+    .then((res) => {
+      return res.data;
+    });
+};
+
+export const postComment = (body, username, reviewId) => {
+  console.log(body, username, reviewId);
+  return gameApi
+    .post(`/reviews/${reviewId}/comments`, {
+      username: username,
+      body: body,
+      review_id: reviewId,
+    })
+    .then((res) => {
+      console.log(res.data);
+      return res.data;
+    });
+};
+
+export const deleteComment = (commentId) => {
+  console.log(commentId);
+  return gameApi.delete(`/comments/${commentId}`).then((res) => {
+    console.log(res);
+    return res.data;
+  });
 };

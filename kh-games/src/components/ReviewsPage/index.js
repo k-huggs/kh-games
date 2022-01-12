@@ -10,29 +10,23 @@ import { getCategories } from "../../utils/api";
 //components
 import Grid from "../Grid";
 
-//Filter by different sorts!
-//sort_by - created_at, comment count, owner
-// loading
-
 const ReviewsPage = () => {
   const [reviews, setReviews] = useState([]);
   const [error, setError] = useState("");
-  const [sortBy, setSortBy] = useState("");
+  const [sort_by, setSortBy] = useState("created_at");
   const [category, setCategory] = useState("");
-  const [order, setOrder] = useState("");
+  const [order, setOrder] = useState("DESC");
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    console.log(sortBy, category, order);
-    getReviews(sortBy, category, order)
+    getReviews(sort_by, category, order)
       .then((data) => {
         setReviews(data.reviews);
-        console.log(data.reviews);
       })
       .catch((error) => {
         console.log(error);
       });
-  }, [sortBy, category, order]);
+  }, [sort_by, category, order]);
 
   useEffect(() => {
     getCategories()
@@ -42,17 +36,20 @@ const ReviewsPage = () => {
       .catch((error) => {
         console.log(error);
       });
-  });
+  }, []);
 
   const handleSortByChange = (event) => {
+    console.log(event.target.value, "<< sort event");
     setSortBy(event.target.value);
   };
 
   const handleCategoryChange = (event) => {
+    console.log(event.target.value, "cate event");
     setCategory(event.target.value);
   };
 
   const handleOrderChange = (event) => {
+    console.log(event.target.value, "order event");
     setOrder(event.target.value);
   };
 
@@ -63,7 +60,8 @@ const ReviewsPage = () => {
         <div>
           <select onChange={handleSortByChange}>
             Sort By:
-            <option value={"comment_count"}>Comments Count</option>
+            <option value={"created_at"}>Created Date</option>
+            <option value={"comment_count"}>Comment Count</option>
             <option value={"votes"}>Votes</option>
             <option value={"owner"}>Author</option>
           </select>
@@ -76,12 +74,13 @@ const ReviewsPage = () => {
                 {category.slug}
               </option>
             ))}
+            <option value={""}>All</option>
           </select>
         </div>
         <select onChange={handleOrderChange}>
-          Order
-          <option value={"ASC"}>Ascending</option>
+          Order:
           <option value={"DESC"}>Descending</option>
+          <option value={"ASC"}>Ascending</option>
         </select>
 
         <Grid reviews={reviews} clickable />

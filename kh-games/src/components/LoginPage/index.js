@@ -13,7 +13,6 @@ const LoginPage = () => {
   const [error, setError] = useState("");
 
   const logIn = (details) => {
-    // console.log(details, adminUser, "<< deets login page");
     if (
       details.username === adminUser.username &&
       details.password === adminUser.password
