@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 
+//Styles
+import { LoginWrapper, LoginContainer, LoginContent } from "./LoginForm.styles";
+
 const LoginForm = ({ logIn, error }) => {
   const [details, setDetails] = useState({ username: "", password: "" });
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(details, "deets form");
     logIn(details);
   };
 
@@ -18,31 +20,31 @@ const LoginForm = ({ logIn, error }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
+    <LoginWrapper>
+      <LoginContainer onSubmit={handleSubmit}>
         <h2>Sign In Here!</h2>
         {error !== "" ? <div className="errormsg">{error} </div> : ""}
-      </div>
-      <main>
-        <label htmlFor="username">Username</label>
-        <input
-          type="text"
-          name="username"
-          onChange={handleUsernameChange}
-          required
-          value={details.username}
-        />
-        <label htmlFor="password">Password</label>
-        <input
-          type="password"
-          name="password"
-          onChange={handlePasswordChange}
-          required
-          value={details.password}
-        />
-        <input type="submit" value="login" />
-      </main>
-    </form>
+        <LoginContent>
+          <label htmlFor="username">Username</label>
+          <input
+            type="text"
+            name="username"
+            onChange={handleUsernameChange}
+            required
+            value={details.username}
+          />
+          <label htmlFor="password">Password</label>
+          <input
+            type="password"
+            name="password"
+            onChange={handlePasswordChange}
+            required
+            value={details.password}
+          />
+          <input type="submit" value="login" className="button" />
+        </LoginContent>
+      </LoginContainer>
+    </LoginWrapper>
   );
 };
 

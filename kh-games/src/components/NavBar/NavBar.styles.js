@@ -1,13 +1,87 @@
 import styled from "styled-components";
 
-export const Wrapper = styled.div`
+export const Nav = styled.nav`
   display: flex;
-  border: 1px;
-  background: blue;
+  justify-content: space-between;
+  width: 100%;
+  background: var(--orange);
+  height: 80px;
+  position: sticky;
+  z-index: 10;
+
+  @media screen and (max-width: 960px) {
+    transition: 0.8 all ease;
+  }
 `;
 
 export const NavBarContent = styled.div`
-display: flex:
-flex-direction: row;
-justify-content: space-around
+  width: var(maxWidth);
+  .reviews {
+    cursor: pointer;
+  }
+
+  .users {
+    cursor: pointer;
+  }
 `;
+
+export const NavBarBtn = styled.div`
+  align-content: flex-end;
+
+  .login {
+    border-color: var(--turq);
+  }
+  button.login:hover {
+    background: var(--green);
+  }
+
+  .register {
+    border-color: var(--lightPink);
+  }
+  button.register:hover {
+    background: var(--purple);
+  }
+`;
+
+// mport styled from "styled-components";
+// import { Link as LinkRouter } from "react-router-dom";
+// import { Link as LinkScroll } from "react-scroll";
+
+// export const NavBar = styled.nav`
+//   background: #000;
+//   height: 80px;
+//   //   margin-top: -80px;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   font-size: 1rem;
+//   position: sticky;
+//   top: 0;
+//   z-index: 10;
+
+//   @media screen and (max-width: 960px) {
+//     transition: 0.8 all ease;
+//   }
+// `;
+
+// export const Container = styled.div`
+//   display: flex;
+//   justify-content: space-between;
+//   height: 80px;
+//   z-index: 1;
+//   width: 100%;
+//   padding: 0 24px;
+//   max-width: 1100px;
+// `;
+
+// export const NavLogo = styled(LinkRouter)`
+//   color: #fff;
+//   justify-self: flex-start;
+//   cursor: pointer;
+//   font-size: 1.5rem;
+//   display: flex;
+//   align-items: center;
+//   margin-left: 24px;
+//   font-weight: bold;
+//   text-decoration: none;
+// `;

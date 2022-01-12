@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 // Styles
-import { LoginWrapper, LoginContent } from "./LoginPage.styles";
+import { LoginWrapper, LoginContainer, LoginContent } from "./LoginPage.styles";
 
 // Components
 import LoginForm from "../LoginForm";
@@ -31,14 +31,16 @@ const LoginPage = () => {
   };
 
   return (
-    <div>
-      <h1>Login page</h1>
-      {user.username !== "" ? (
-        <WelcomePage user={user} logOut={logOut} />
-      ) : (
-        <LoginForm logIn={logIn} error={error} />
-      )}
-    </div>
+    <LoginWrapper>
+      <LoginContainer>
+        <h1>Login page</h1>
+        {/* {user.username !== "" ? (
+          <WelcomePage user={user} logOut={logOut} />
+        ) : (
+          <LoginForm logIn={logIn} error={error} />
+        )} */}
+      </LoginContainer>
+    </LoginWrapper>
   );
 };
 

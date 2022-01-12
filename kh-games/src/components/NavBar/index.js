@@ -1,28 +1,38 @@
 import React from "react";
 import { Link } from "react-router-dom";
+
 //Styles
-import { Wrapper, NavBarContent } from "./NavBar.styles";
+import { Nav, NavBarContent, NavBarBtn } from "./NavBar.styles";
+import * as BiIcons from "react-icons/bi";
 
 const NavBar = () => {
+  // <selec> <option> for the categories
   return (
-    <Wrapper>
-      <h1>NavBar Will Be Ere'</h1>
+    <Nav>
+      <Link to="/">
+        <BiIcons.BiGame />
+        <h2>KH Games</h2>
+      </Link>
       <NavBarContent>
-        <ul>
-          <span>
-            <li>Categories</li>
-          </span>
-          <span>
-            <li>Users</li>
-          </span>
-          <span>
-            <li>Reviews</li>
-          </span>
-        </ul>
+        <Link to="/categories">
+          <button className="categories">Categories</button>
+        </Link>
+        <Link to="/users">
+          <span className="users">Users</span>
+        </Link>
+        <Link to="/reviews">
+          <span className="reviews">Reviews</span>
+        </Link>
       </NavBarContent>
-      <button>Login</button>
-      <button>Register</button>
-    </Wrapper>
+      <NavBarBtn>
+        <Link to="/login">
+          <button className="login">Login</button>
+        </Link>
+        <Link to="/register">
+          <button className="register">Register</button>
+        </Link>
+      </NavBarBtn>
+    </Nav>
   );
 };
 

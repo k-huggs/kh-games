@@ -1,15 +1,17 @@
 import React from "react";
 
 // Styles
-import { HomeWrapper, HeroImg, HomeContent } from "./Home.styles";
+import { HomeWrapper, HeroBg, HeroVid, HomeContent } from "./Home.styles";
+import video from "../../videos/home.mp4";
 
 const Home = () => {
   return (
     <HomeWrapper>
-      <h1>This will be a picture</h1>
-      <HeroImg />
-      <h2>hero snap</h2>
+      <HeroBg>
+        <HeroVid src={video} autoPlay muted loop />
+      </HeroBg>
       <HomeContent>
+        <h1>Enter Text Here</h1>
         <p>This is where we will have content </p>
       </HomeContent>
     </HomeWrapper>
