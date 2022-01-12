@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 // Data
-import { getReview, postLike } from "./utils/api";
+import { getReview, patchLike } from "./utils/api";
 
 const Review = () => {
   const { reviewId } = useParams();
@@ -21,20 +21,46 @@ const Review = () => {
       });
   }, []);
 
-  useEffect(() => {
-    postLike();
-  });
+  const handleLikeClick = () => {
+    setLikes((currLikes) => {
+      return currLikes + 1;
+    });
+    patchLike(reviewId, 1)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
-  const handleOnClick = () => {};
+  const handleDislikeCLick = () => {
+    setLikes((currLikes) => {
+      return currLikes - 1;
+    });
+
+    patchLike(reviewId, -1)
+      .then((res) => {
+        console.log(res);
+        return res;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   return (
     <>
       <h1>{review.title}</h1>
       <img src={review.review_img_url} />
       <p>{review.review_body}</p>
-      <button onClick={handleOnClick}>👍</button>
-      <button onClick={handleOnClick}>👎</button>
-      <p>{review.votes}</p>
+      <button onClick={handleLikeClick} disabled={likes === 1}>
+        👍
+      </button>
+      <button onClick={handleDislikeCLick} disabled={likes === -1}>
+        👎
+      </button>
+      <p>{review.votes + likes}</p>
     </>
   );
 };
