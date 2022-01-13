@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { UserProvider } from "./UserContext";
 
 // Styles
 import { GlobalStyle } from "./GlobalStyles";
@@ -16,7 +17,8 @@ import UsersPage from "./components/UsersPage";
 import WelcomePage from "./components/WelcomePage";
 import CategoriesPage from "./components/CategoriesPage";
 import RegistrationFrom from "./components/RegisterForm";
-import { UserProvider } from "./UserContext";
+import User from "./User";
+import Category from "./Category";
 
 function App() {
   return (
@@ -34,6 +36,8 @@ function App() {
           <Route path="/users" element={<UsersPage />} />
           <Route path="/categories" element={<CategoriesPage />} />
           <Route path="/register" element={<RegistrationFrom />} />
+          <Route path="/users/:username" element={<User />} />
+          <Route path="/categories/:categoryname" element={<Category />} />
         </Routes>
         <GlobalStyle />
       </Router>

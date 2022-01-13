@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+
 // Styles
 import { CatWrapper, CatContent, CatCard } from "./CategoriesPage.styles";
 
@@ -9,7 +10,6 @@ import { useReviews } from "../../hooks/useReviews";
 
 // Components
 import Spinner from "../Spinner";
-import { createGlobalStyle } from "styled-components";
 
 const CategoriesPage = () => {
   const [categories, setCategories] = useState([]);
@@ -37,20 +37,22 @@ const CategoriesPage = () => {
       {loading && <Spinner />}
       <CatContent>
         {categories.map((category, index) => (
-          <CatCard key={index} clickable>
-            <h2>{category.slug}</h2>
-            <p>{category.description}</p>
-            <div>
-              {reviews.filter((review) => {
-                <>
-                  return{" "}
-                  {category.slug === review.category ? (
-                    <p>review.title</p>
-                  ) : null}
-                </>;
-              })}
-            </div>
-          </CatCard>
+          <Link to={`/categories/${category.slug}`}>
+            <CatCard key={index}>
+              <h2>{category.slug}</h2>
+              <p>{category.description}</p>
+              <div>
+                {reviews.filter((review) => {
+                  <>
+                    return{" "}
+                    {category.slug === review.category ? (
+                      <p>review.title</p>
+                    ) : null}
+                  </>;
+                })}
+              </div>
+            </CatCard>
+          </Link>
         ))}
       </CatContent>
     </CatWrapper>

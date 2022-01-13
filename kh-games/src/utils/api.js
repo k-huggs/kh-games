@@ -24,6 +24,7 @@ export const getReview = (reviewId) => {
 
 export const getUsers = () => {
   return gameApi.get("/users").then((res) => {
+    console.log(res.data, "<<< users");
     return res.data;
   });
 };
@@ -57,7 +58,8 @@ export const getComments = (reviewId) => {
   });
 };
 
-export const patchCommentLikes = (reviewId, commentId, likes) => {
+export const patchCommentLikes = (commentId, likes) => {
+  console.log(commentId, likes, "<<< comments");
   return gameApi
     .patch(`/comments/${commentId}`, { inc_votes: likes })
     .then((res) => {
@@ -66,7 +68,7 @@ export const patchCommentLikes = (reviewId, commentId, likes) => {
 };
 
 export const postComment = (body, username, reviewId) => {
-  console.log(body, username, reviewId);
+  console.log(body, username, reviewId, "<<< API Comments");
   return gameApi
     .post(`/reviews/${reviewId}/comments`, {
       username: username,
@@ -74,15 +76,19 @@ export const postComment = (body, username, reviewId) => {
       review_id: reviewId,
     })
     .then((res) => {
-      console.log(res.data);
+      console.log(res.data, "<<< res.data");
       return res.data;
     });
 };
 
 export const deleteComment = (commentId) => {
-  console.log(commentId);
   return gameApi.delete(`/comments/${commentId}`).then((res) => {
-    console.log(res);
+    return res.data;
+  });
+};
+
+export const getUserByUsername = (username) => {
+  return gameApi.get(`/users/${username}`).then((res) => {
     return res.data;
   });
 };

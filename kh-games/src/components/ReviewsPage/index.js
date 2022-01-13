@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from "react";
 
 // Styles
-import { ReviewWrapper, ReviewContent } from "./ReviewPage.styles";
+import {
+  ReviewWrapper,
+  ReviewContent,
+  ReviewContainer,
+  ReviewSort,
+} from "./ReviewPage.styles";
 
 // Data
 import { getReviews } from "../../utils/api";
@@ -55,36 +60,37 @@ const ReviewsPage = () => {
 
   return (
     <ReviewWrapper>
-      <ReviewContent>
-        <h1>Reviews Page</h1>
-        <div>
-          <select onChange={handleSortByChange}>
-            Sort By:
-            <option value={"created_at"}>Created Date</option>
-            <option value={"comment_count"}>Comment Count</option>
-            <option value={"votes"}>Votes</option>
-            <option value={"owner"}>Author</option>
+      <ReviewContainer>
+        <h1>Reviews</h1>
+        <ReviewContent>
+          <ReviewSort>
+            <select onChange={handleSortByChange}>
+              Sort By:
+              <option value={"created_at"}>Created Date</option>
+              <option value={"comment_count"}>Comment Count</option>
+              <option value={"votes"}>Votes</option>
+              <option value={"owner"}>Author</option>
+            </select>
+          </ReviewSort>
+          <div>
+            <select onChange={handleCategoryChange}>
+              Category
+              {categories.map((category, index) => (
+                <option key={index} value={category.slug}>
+                  {category.slug}
+                </option>
+              ))}
+              <option value={""}>All</option>
+            </select>
+          </div>
+          <select onChange={handleOrderChange}>
+            Order:
+            <option value={"DESC"}>Descending</option>
+            <option value={"ASC"}>Ascending</option>
           </select>
-        </div>
-        <div>
-          <select onChange={handleCategoryChange}>
-            Category
-            {categories.map((category, index) => (
-              <option key={index} value={category.slug}>
-                {category.slug}
-              </option>
-            ))}
-            <option value={""}>All</option>
-          </select>
-        </div>
-        <select onChange={handleOrderChange}>
-          Order:
-          <option value={"DESC"}>Descending</option>
-          <option value={"ASC"}>Ascending</option>
-        </select>
-
+        </ReviewContent>
         <Grid reviews={reviews} clickable />
-      </ReviewContent>
+      </ReviewContainer>
     </ReviewWrapper>
   );
 };

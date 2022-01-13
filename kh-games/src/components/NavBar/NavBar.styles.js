@@ -3,19 +3,31 @@ import styled from "styled-components";
 export const Nav = styled.nav`
   display: flex;
   justify-content: space-between;
-  width: 100%;
-  background: var(--orange);
-  height: 80px;
+  align-items: center;
+  height: 90px;
   position: sticky;
-  z-index: 10;
+  width: 100%;
+  top: 0;
 
-  @media screen and (max-width: 960px) {
-    transition: 0.8 all ease;
+  h2 {
+    margin-left: 25px;
   }
 `;
 
+export const HomeBtn = styled.div``;
+
 export const NavBarContent = styled.div`
-  width: var(maxWidth);
+  display: flex;
+
+  span {
+    margin-left: 50px;
+    margin-right: 50px;
+  }
+
+  .categories {
+    cursor: pointer;
+  }
+
   .reviews {
     cursor: pointer;
   }
@@ -26,62 +38,19 @@ export const NavBarContent = styled.div`
 `;
 
 export const NavBarBtn = styled.div`
-  align-content: flex-end;
-
-  .login {
-    border-color: var(--turq);
+  button:hover {
+    cursor: pointer;
   }
-  button.login:hover {
+
+  .login:hover {
     background: var(--green);
+    cursor: pointer;
   }
-
-  .register {
-    border-color: var(--lightPink);
+  .logout:hover {
+    background: var(--red);
+    cursor: pointer;
   }
-  button.register:hover {
+  .register:hover {
     background: var(--purple);
   }
 `;
-
-// mport styled from "styled-components";
-// import { Link as LinkRouter } from "react-router-dom";
-// import { Link as LinkScroll } from "react-scroll";
-
-// export const NavBar = styled.nav`
-//   background: #000;
-//   height: 80px;
-//   //   margin-top: -80px;
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   font-size: 1rem;
-//   position: sticky;
-//   top: 0;
-//   z-index: 10;
-
-//   @media screen and (max-width: 960px) {
-//     transition: 0.8 all ease;
-//   }
-// `;
-
-// export const Container = styled.div`
-//   display: flex;
-//   justify-content: space-between;
-//   height: 80px;
-//   z-index: 1;
-//   width: 100%;
-//   padding: 0 24px;
-//   max-width: 1100px;
-// `;
-
-// export const NavLogo = styled(LinkRouter)`
-//   color: #fff;
-//   justify-self: flex-start;
-//   cursor: pointer;
-//   font-size: 1.5rem;
-//   display: flex;
-//   align-items: center;
-//   margin-left: 24px;
-//   font-weight: bold;
-//   text-decoration: none;
-// `;

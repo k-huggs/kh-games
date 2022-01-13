@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 // Styles
 import {
@@ -18,6 +19,7 @@ const RegistrationFrom = () => {
   const [reg, setReg] = useState({ username: "", name: "", avatar_url: "" });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  let navigate = useNavigate();
 
   const handleSubmit = (event) => {
     setLoading(true);
@@ -41,6 +43,10 @@ const RegistrationFrom = () => {
 
   const handleAvatarChange = (event) => {
     setReg({ ...reg, avatar_url: event.target.value });
+  };
+
+  const handleClick = () => {
+    navigate("/login");
   };
 
   return (
@@ -70,7 +76,7 @@ const RegistrationFrom = () => {
         <RegContent>
           <RegButtonWrap>
             <label>
-              <input type="submit"></input>
+              <input type="submit" onClick={handleClick}></input>
             </label>
           </RegButtonWrap>
         </RegContent>
@@ -79,5 +85,5 @@ const RegistrationFrom = () => {
     </RegWrapper>
   );
 };
-
+// navigate function on submit.
 export default RegistrationFrom;

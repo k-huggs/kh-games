@@ -1,21 +1,27 @@
-import React from "react";
+import React, { useState, useContext } from "react";
+import { UserContext } from "../../UserContext";
 import { Link } from "react-router-dom";
 
 //Styles
-import { Nav, NavBarContent, NavBarBtn } from "./NavBar.styles";
+import { Nav, NavBarContent, NavBarBtn, HomeBtn } from "./NavBar.styles";
 import * as BiIcons from "react-icons/bi";
 
 const NavBar = () => {
+  const { isLoggedIn, logOut } = useContext(UserContext);
+  const handleClick = () => {
+    logOut();
+  };
   // <selec> <option> for the categories
   return (
     <Nav>
-      <Link to="/">
-        <BiIcons.BiGame />
-        <h2>KH Games</h2>
-      </Link>
+      <HomeBtn>
+        <Link to="/">
+          <h2>KH Games</h2>
+        </Link>
+      </HomeBtn>
       <NavBarContent>
         <Link to="/categories">
-          <button className="categories">Categories</button>
+          <span className="categories">Categories</span>
         </Link>
         <Link to="/users">
           <span className="users">Users</span>
@@ -25,9 +31,18 @@ const NavBar = () => {
         </Link>
       </NavBarContent>
       <NavBarBtn>
-        <Link to="/login">
-          <button className="login">Login</button>
-        </Link>
+        {!isLoggedIn ? (
+          <Link to="/login">
+            <button className="login">Login</button>
+          </Link>
+        ) : (
+          <Link to="/">
+            <button className="logout" onClick={handleClick}>
+              Log Out
+            </button>
+          </Link>
+        )}
+
         <Link to="/register">
           <button className="register">Register</button>
         </Link>

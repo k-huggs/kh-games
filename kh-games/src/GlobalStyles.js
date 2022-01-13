@@ -3,27 +3,32 @@ import { createGlobalStyle } from "styled-components";
 // Add colors, fonts, and backgrounds colors!
 
 export const GlobalStyle = createGlobalStyle`
-
+@import url('https://fonts.googleapis.com/css2?family=PT+Mono&display=swap');
 :root {
 --maxWidth: 1280px;
+--medWidth: 768px;
+--smallWidth: 480px;
 --fontSuperBig: 2.5rem;
 --fontBig: 1.7rem;
 --fontMed: 1.3rem;
 --fontSmall: 1rem;
 --white: #fff;
---purple: #a972cb;
---pink: #ef6eae;
---lightPink: #ff7f82; 
 --orange: #ffa260; 
---yellow: #e4cb58; 
---green: #8fc866; 
---turq: #19bc8b;
+--yellow: #e4cb58;
+
+--red: #dd3e54;
+--purple: #9796f0;
+--green: #A5CC82;
+--pink: #CC95C0;
+--blue: #7AA1D2;
+--brown:#603813;
 }
 
 * {
     box-sizing: border-box;
-    background: hsl(227, 10%, 10%);
-    color: #fff;
+    background: #E7E9BB;
+    color: #403B4A;
+    font-family: 'PT Mono', monospace;
 }
 
 body {

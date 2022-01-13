@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 // Data
 import { getUsers } from "../../utils/api";
@@ -13,7 +14,6 @@ const UsersPage = () => {
   useEffect(() => {
     getUsers()
       .then((data) => {
-        console.log(data);
         setUsers(data.users);
       })
       .catch((error) => {
@@ -25,11 +25,13 @@ const UsersPage = () => {
     <UserWrapper>
       <UserContent>
         {users.map((user) => (
-          <div key={user.username}>
-            <h2>{user.username}</h2>
-            <h3>{user.name}</h3>
-            <img src={user.avatar_url} />
-          </div>
+          <Link to={`/users/${user.username}`}>
+            <div key={user.username}>
+              <h2>{user.username}</h2>
+              <h3>{user.name}</h3>
+              <img src={user.avatar_url} />
+            </div>
+          </Link>
         ))}
       </UserContent>
     </UserWrapper>

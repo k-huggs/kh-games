@@ -1,10 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { UserContext } from "../../UserContext";
+import { useNavigate } from "react-router-dom";
 
 //Styles
 import { LoginWrapper, LoginContainer, LoginContent } from "./LoginForm.styles";
 
-const LoginForm = ({ logIn, error }) => {
+const LoginForm = () => {
+  const { adminUser, logIn, setUser, user, error, isLoggedIn } =
+    useContext(UserContext);
+
   const [details, setDetails] = useState({ username: "", password: "" });
+
+  let navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -42,6 +49,7 @@ const LoginForm = ({ logIn, error }) => {
             value={details.password}
           />
           <input type="submit" value="login" className="button" />
+          {isLoggedIn && navigate("/")}
         </LoginContent>
       </LoginContainer>
     </LoginWrapper>

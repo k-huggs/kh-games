@@ -39,5 +39,6 @@ export const HomeContent = styled.div`
 
   h1 {
     background: transparent;
+    color: var(--white);
   }
 `;
