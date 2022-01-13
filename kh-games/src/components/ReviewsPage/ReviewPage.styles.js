@@ -16,6 +16,8 @@ export const ReviewContainer = styled.div``;
 
 export const ReviewContent = styled.div`
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 `;
 
 export const ReviewSort = styled.div`

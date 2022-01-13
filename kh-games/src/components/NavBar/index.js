@@ -3,7 +3,14 @@ import { UserContext } from "../../UserContext";
 import { Link } from "react-router-dom";
 
 //Styles
-import { Nav, NavBarContent, NavBarBtn, HomeBtn } from "./NavBar.styles";
+import {
+  Nav,
+  NavBarContent,
+  NavBarBtn,
+  NavLink,
+  Bars,
+  NavBtnLink,
+} from "./NavBar.styles";
 import * as BiIcons from "react-icons/bi";
 
 const NavBar = () => {
@@ -13,41 +20,40 @@ const NavBar = () => {
   };
   // <selec> <option> for the categories
   return (
-    <Nav>
-      <HomeBtn>
-        <Link to="/">
-          <h2>KH Games</h2>
-        </Link>
-      </HomeBtn>
-      <NavBarContent>
-        <Link to="/categories">
-          <span className="categories">Categories</span>
-        </Link>
-        <Link to="/users">
-          <span className="users">Users</span>
-        </Link>
-        <Link to="/reviews">
-          <span className="reviews">Reviews</span>
-        </Link>
-      </NavBarContent>
-      <NavBarBtn>
-        {!isLoggedIn ? (
-          <Link to="/login">
-            <button className="login">Login</button>
-          </Link>
-        ) : (
-          <Link to="/">
-            <button className="logout" onClick={handleClick}>
-              Log Out
-            </button>
-          </Link>
-        )}
+    <>
+      <Nav>
+        <NavLink to="/">
+          <h2>KHGames</h2>
+        </NavLink>
+        <Bars />
+        <NavBarContent>
+          <NavLink to="/categories" className="categories">
+            Categories
+          </NavLink>
+          <NavLink to="/users">Users</NavLink>
+          <NavLink to="/reviews" className="reviews">
+            Reviews
+          </NavLink>
+        </NavBarContent>
 
-        <Link to="/register">
-          <button className="register">Register</button>
-        </Link>
-      </NavBarBtn>
-    </Nav>
+        <NavBarBtn>
+          {!isLoggedIn ? (
+            <NavBtnLink to="/login">
+              <button className="login">Login</button>
+            </NavBtnLink>
+          ) : (
+            <NavBtnLink to="/login">
+              <button className="logout" onClick={handleClick}>
+                Log Out
+              </button>
+            </NavBtnLink>
+          )}
+          <NavBtnLink to="/register">
+            <button className="register">Register</button>
+          </NavBtnLink>
+        </NavBarBtn>
+      </Nav>
+    </>
   );
 };
 

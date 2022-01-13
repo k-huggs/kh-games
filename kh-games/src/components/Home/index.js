@@ -15,7 +15,7 @@ const Home = () => {
           <HeroVid src={video} autoPlay muted loop />
         </HeroBg>
         <HomeContent>
-          <h1>Let Free Your Enthusiasm</h1>
+          <h1>Bringing Family and Friends Together</h1>
         </HomeContent>
       </HomeWrapper>
       <ReviewsPage />

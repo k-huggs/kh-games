@@ -25,6 +25,7 @@ export const UserProvider = (props) => {
 
   const logOut = () => {
     setUser({ username: "", password: "" });
+    setIsLoggedIn(false);
   };
 
   return (

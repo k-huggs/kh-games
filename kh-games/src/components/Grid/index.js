@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useEffect } from "react/cjs/react.development";
 // Styles
 import { GridWrapper, GridContent } from "./Grid.style";
 const PAGE_LENGTH = 5;
@@ -23,6 +24,10 @@ const Grid = ({ reviews, clickable }) => {
           </GridContent>
         </Link>
       ))}
+      <div>
+        <button>Previous</button>
+        <button>Next</button>
+      </div>
       {/* <button
         onCLick={setPage((currPage) => currPage - 1)}
         disabled={page === 1}

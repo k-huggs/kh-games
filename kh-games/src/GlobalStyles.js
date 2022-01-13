@@ -1,7 +1,5 @@
 import { createGlobalStyle } from "styled-components";
 
-// Add colors, fonts, and backgrounds colors!
-
 export const GlobalStyle = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css2?family=PT+Mono&display=swap');
 :root {

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const WelcWrapper = styled.div`
   background: #0c0c0c;
@@ -6,7 +7,7 @@ export const WelcWrapper = styled.div`
   justify-content: center;
   align-items: center;
   padding: 0 30px;
-  height: 800px;
+  height: 1000px;
   position: relative;
   z-index: 1;
 `;
@@ -55,6 +56,8 @@ export const H1 = styled.h1`
     font-size: 32px;
   }
 `;
+
+// export const styled
 
 export const ButtonWrapper = styled.div`
   background: transparent;

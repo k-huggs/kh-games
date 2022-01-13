@@ -7,7 +7,7 @@ export const HomeWrapper = styled.div`
   justify-content: center;
   align-items: center;
   padding: 0 30px;
-  height: 750px;
+  height: 1000px;
   position: relative;
 `;
 

@@ -20,8 +20,7 @@ const User = () => {
   }, [username]);
 
   useEffect(() => {
-    getReviews("created_at", "", "DESC").then((data) => {
-      console.log(data, "<<<< get revs");
+    getReviews().then((data) => {
       setReviews((currRevs) => {
         const reviews = data.reviews.filter((reviews) => {
           return reviews.owner === username;

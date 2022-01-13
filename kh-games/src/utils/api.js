@@ -6,7 +6,7 @@ const gameApi = axios.create({
 
 export const getReviews = (sort_by, category, order) => {
   return gameApi
-    .get(`/reviews/?sort_by=${sort_by}&category=${category}&order=${order}`, {
+    .get(`/reviews/`, {
       sort_by: sort_by,
       category: category,
       order: order,

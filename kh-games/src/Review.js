@@ -6,6 +6,7 @@ import { getReview, patchReviewLikes } from "./utils/api";
 
 //Components
 import Comments from "./components/CommentsSection";
+import { ReviewContent, ReviewVotes, ReviewWrapper } from "./Review.style";
 
 const Review = () => {
   const { reviewId } = useParams();
@@ -53,21 +54,25 @@ const Review = () => {
   };
 
   return (
-    <>
-      <h1>{review.title}</h1>
-      <img src={review.review_img_url} />
-      <p>{review.review_body}</p>
-      <button onClick={handleLikeClick} disabled={likes === 1}>
-        👍
-      </button>
-      <button onClick={handleDislikeCLick} disabled={likes === -1}>
-        👎
-      </button>
-      <p>{review.votes + likes}</p>
+    <ReviewWrapper>
+      <ReviewContent>
+        <h1>{review.title}</h1>
+        <img src={review.review_img_url} />
+        <p>{review.review_body}</p>
+        <ReviewVotes>
+          <button onClick={handleLikeClick} disabled={likes === 1}>
+            👍
+          </button>
+          <button onClick={handleDislikeCLick} disabled={likes === -1}>
+            👎
+          </button>
+          <p>Number of Likes {review.votes + likes}</p>
+        </ReviewVotes>
+      </ReviewContent>{" "}
       <div>
         <Comments reviewId={reviewId} />
       </div>
-    </>
+    </ReviewWrapper>
   );
 };
 

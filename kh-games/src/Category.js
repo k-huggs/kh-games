@@ -10,7 +10,7 @@ const Category = () => {
   const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
-    getReviews("created_at", "", "DESC").then((data) => {
+    getReviews("created_at", categoryname, undefined).then((data) => {
       console.log(data);
       setReviews((currRevs) => {
         const reviews = data.reviews.filter((review) => {

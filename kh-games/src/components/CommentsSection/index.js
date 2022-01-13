@@ -39,7 +39,6 @@ const Comments = ({ reviewId }) => {
   };
 
   const handleSubmit = (event) => {
-    event.preventDefault();
     postComment(body, username, reviewId)
       .then(({ comment }) => {
         console.log(comment);

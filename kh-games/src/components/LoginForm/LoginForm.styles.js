@@ -10,14 +10,13 @@ export const LoginWrapper = styled.div`
 
 export const LoginContainer = styled.form`
   display: flex;
-  width: 100%
+  width: 100%;
   padding: 40px;
   border-radius: 10px;
   box-sizing: border-box;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  max-width: var(--maxWidth);
 
   h2 {
     font-size: 30px;

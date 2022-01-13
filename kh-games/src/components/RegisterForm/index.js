@@ -52,33 +52,38 @@ const RegistrationFrom = () => {
   return (
     <RegWrapper>
       <RegForm onSubmit={handleSubmit}>
-        <label for>
-          Please Enter a username
-          <input
-            type="text"
-            value={reg.username}
-            onChange={handleUsernameChange}
-          />
-        </label>
-        <label>
-          Please Enter Your Name
-          <input type="text" value={reg.name} onChange={handleNameChange} />
-        </label>
-        <label>
-          Upload Your Image Url
-          <input
-            type="text"
-            value={reg.avatar_url}
-            onChange={handleAvatarChange}
-          />
-        </label>
-
         <RegContent>
-          <RegButtonWrap>
-            <label>
-              <input type="submit" onClick={handleClick}></input>
-            </label>
-          </RegButtonWrap>
+          <label>
+            <input
+              className="text"
+              type="text"
+              value={reg.username}
+              onChange={handleUsernameChange}
+              placeholder="Please Enter A Username"
+            />
+          </label>
+          <label>
+            <input
+              className="text"
+              type="text"
+              value={reg.name}
+              onChange={handleNameChange}
+              placeholder="Please Enter Your Name"
+            />
+          </label>
+          <label>
+            <input
+              className="text"
+              type="text"
+              value={reg.avatar_url}
+              onChange={handleAvatarChange}
+              placeholder="Upload Your Image Url"
+            />
+          </label>
+
+          <label>
+            <button onClick={handleClick}> Submit</button>
+          </label>
         </RegContent>
         {loading && <Spinner />}
       </RegForm>

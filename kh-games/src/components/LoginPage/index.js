@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React from "react";
 
 // Styles
 import { LoginWrapper, LoginContainer, LoginContent } from "./LoginPage.styles";
 
 // Components
 import LoginForm from "../LoginForm";
-import WelcomePage from "../WelcomePage";
 
 const LoginPage = () => {
   return (
@@ -20,11 +18,3 @@ const LoginPage = () => {
 };
 
 export default LoginPage;
-
-{
-  /* {user.username !== "" ? (
-          <WelcomePage user={user} logOut={logOut} />
-        ) : (
-          <LoginForm logIn={logIn} error={error} />
-        )} */
-}

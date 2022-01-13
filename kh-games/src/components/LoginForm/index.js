@@ -49,7 +49,7 @@ const LoginForm = () => {
             value={details.password}
           />
           <input type="submit" value="login" className="button" />
-          {isLoggedIn && navigate("/")}
+          {isLoggedIn && navigate("/welcome")}
         </LoginContent>
       </LoginContainer>
     </LoginWrapper>
