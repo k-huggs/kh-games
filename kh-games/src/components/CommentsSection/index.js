@@ -5,11 +5,9 @@ import { UserContext } from "../../UserContext";
 // Styles
 import {
   CommentForm,
-  CommentsContent,
   CommentsWrapper,
   CommentButton,
   FormContent,
-  CommentsContainer,
 } from "./CommentsSection.styles";
 
 // Data

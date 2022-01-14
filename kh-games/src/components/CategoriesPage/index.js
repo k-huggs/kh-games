@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 // Styles
-import { CatWrapper, CatContent, CatCard } from "./CategoriesPage.styles";
+import { CatWrapper, CatCard } from "./CategoriesPage.styles";
 
 // Data
 import { getCategories } from "../../utils/api";

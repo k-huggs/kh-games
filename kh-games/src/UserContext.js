@@ -16,7 +16,6 @@ export const UserProvider = (props) => {
       setUser({ username: details.username, password: details.password });
       setError("");
       setIsLoggedIn(true);
-      console.log("if block");
     } else {
       setError("Details are incorrect please ammend");
       setIsLoggedIn(false);

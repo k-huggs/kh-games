@@ -18,7 +18,6 @@ const NotFound = () => {
         <NotFoundH1>Error 404 - This Page Has Not Been Found</NotFoundH1>
         <NotFoundContent>
           <NotFoundVid autoPlay loop muted src={video} type="video/mp4" />
-
           <NotFoundText>Click to go Home</NotFoundText>
           <NotFoundBtn>
             <Link to="/">

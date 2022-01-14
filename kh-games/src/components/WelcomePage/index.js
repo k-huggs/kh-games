@@ -23,7 +23,6 @@ const WelcomePage = () => {
       </WelcBg>
       <Content>
         <H1>Welcome {user.username} </H1>
-        {/* <h1>Welcome {user.username}</h1> */}
         <ButtonWrapper>
           <Link to="/">
             <button className="home">Home</button>

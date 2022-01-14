@@ -16,7 +16,6 @@ export const useReviews = () => {
     setError("");
     getReviews(sort_by, category, order)
       .then((data) => {
-        console.log(data);
         setReviews(data.reviews);
       })
       .catch((error) => {

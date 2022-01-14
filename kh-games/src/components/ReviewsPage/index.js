@@ -27,7 +27,6 @@ const ReviewsPage = () => {
 
   useEffect(() => {
     setLoading(true);
-    console.log(sort_by, category, order);
     getReviews(sort_by, category, order)
       .then((data) => {
         setReviews(data.reviews);

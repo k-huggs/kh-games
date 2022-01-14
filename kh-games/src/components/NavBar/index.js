@@ -11,14 +11,13 @@ import {
   Bars,
   NavBtnLink,
 } from "./NavBar.styles";
-import * as BiIcons from "react-icons/bi";
 
 const NavBar = () => {
   const { isLoggedIn, logOut } = useContext(UserContext);
   const handleClick = () => {
     logOut();
   };
-  // <selec> <option> for the categories
+
   return (
     <>
       <Nav>

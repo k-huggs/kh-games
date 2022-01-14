@@ -12,13 +12,11 @@ const Grid = ({ reviews, loading }) => {
   const [page, setPage] = useState(1);
   const [totalCount, setTotalCount] = useState(0);
 
-  //set the total count to 0 and get this back from the api,
-
   return (
     <GridWrapper>
-      {reviews.map((review) => (
+      {reviews.map((review, index) => (
         <Link to={`/reviews/${review.review_id}`}>
-          <GridContent key={review.id}>
+          <GridContent key={review.review_id}>
             <h3>{review.title}</h3>
             <p>{review.designer}</p>
             <img

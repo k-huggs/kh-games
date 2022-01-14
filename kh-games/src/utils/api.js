@@ -75,7 +75,6 @@ export const postComment = (body, username, reviewId) => {
       review_id: reviewId,
     })
     .then((res) => {
-      console.log(res.data);
       return res.data;
     });
 };

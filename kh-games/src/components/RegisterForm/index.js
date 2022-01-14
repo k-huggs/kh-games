@@ -91,5 +91,5 @@ const RegistrationFrom = () => {
     </RegWrapper>
   );
 };
-// navigate function on submit.
+
 export default RegistrationFrom;

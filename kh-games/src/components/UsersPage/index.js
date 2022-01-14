@@ -9,7 +9,6 @@ import {
   UserWrapper,
   UserContainer,
   CardTitle,
-  CardBody,
   UserImgWrapper,
 } from "./UsersPage.styles";
 
