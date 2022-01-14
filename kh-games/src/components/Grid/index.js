@@ -20,31 +20,37 @@ const Grid = ({ reviews, loading }) => {
         <Link to={`/reviews/${review.review_id}`}>
           <GridContent key={review.id}>
             <h3>{review.title}</h3>
+            <p>{review.designer}</p>
             <img
               src={review.review_img_url}
               className="cards-img"
               alt="review-img"
             />
+            <p>Comments: {review.comment_count}</p>
+            <p>Likes: {review.votes}</p>
+            <p>Category: {review.category}</p>
           </GridContent>
           {loading && <Spinner />}
         </Link>
       ))}
       <div>
-        <button>Previous</button>
-        <button>Next</button>
+        <button
+          onClick={(event) => {
+            setPage((currPage) => currPage - 1);
+          }}
+          disabled={page === 1}
+        >
+          Previous
+        </button>
+        <button
+          onClick={(event) => {
+            setPage((currPage) => currPage + 1);
+          }}
+          disabled={PAGE_LENGTH * page >= totalCount}
+        >
+          Next
+        </button>
       </div>
-      {/* <button
-        onCLick={setPage((currPage) => currPage - 1)}
-        disabled={page === 1}
-      >
-        Previous
-      </button>
-      <button
-        onClick={setPage((currPage) => currPage + 1)}
-        disabled={PAGE_LENGTH * page >= totalCount}
-      >
-        Next
-      </button> */}
       {loading && <Spinner />}
     </GridWrapper>
   );

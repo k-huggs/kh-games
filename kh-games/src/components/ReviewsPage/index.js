@@ -27,6 +27,7 @@ const ReviewsPage = () => {
 
   useEffect(() => {
     setLoading(true);
+    console.log(sort_by, category, order);
     getReviews(sort_by, category, order)
       .then((data) => {
         setReviews(data.reviews);
@@ -78,12 +79,12 @@ const ReviewsPage = () => {
           <div>
             <select onChange={handleCategoryChange}>
               Category
+              <option value={""}>All</option>
               {categories.map((category, index) => (
                 <option key={index} value={category.slug}>
                   {category.slug}
                 </option>
               ))}
-              <option value={""}>All</option>
             </select>
           </div>
           <select onChange={handleOrderChange}>
@@ -94,7 +95,6 @@ const ReviewsPage = () => {
         </ReviewContent>
         <Grid reviews={reviews} loading={loading} />
       </ReviewContainer>
-      {loading && <Spinner />}
     </ReviewWrapper>
   );
 };

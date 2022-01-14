@@ -4,18 +4,15 @@ export const RegWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  flex-direction: column;
+  height: 80vh;
   padding: 0 20px;
 `;
 
 export const RegForm = styled.form`
-  border: solid;
-  padding: 1rem 2rem 2rem 2rem;
-  border-color: black;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 20px;
 `;
 
 export const RegContent = styled.div`
@@ -23,14 +20,16 @@ export const RegContent = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: transparent;
+
   input.text {
-    width: 300px;
-    margin: 3rem;
-    padding: 1rem;
+    padding: 6px 10px;
+    margin: 30px 20px;
+    display: block;
+    width: 40vh;
   }
 
   button:hover {
     background: var(--green);
+    color: var(--white);
   }
 `;

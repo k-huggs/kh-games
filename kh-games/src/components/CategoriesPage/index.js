@@ -33,26 +33,24 @@ const CategoriesPage = () => {
   return (
     <CatWrapper>
       {loading && <Spinner />}
-      <CatContent>
-        {categories.map((category, index) => (
-          <Link to={`/categories/${category.slug}`}>
-            <CatCard key={index}>
-              <h2>{category.slug}</h2>
-              <p>{category.description}</p>
-              <div>
-                {reviews.filter((review) => {
-                  <>
-                    return{" "}
-                    {category.slug === review.category ? (
-                      <p>review.title</p>
-                    ) : null}
-                  </>;
-                })}
-              </div>
-            </CatCard>
-          </Link>
-        ))}
-      </CatContent>
+      {categories.map((category, index) => (
+        <Link to={`/categories/${category.slug}`}>
+          <CatCard key={index}>
+            <h2>{category.slug}</h2>
+            <p>{category.description}</p>
+            <div>
+              {reviews.filter((review) => {
+                <>
+                  return{" "}
+                  {category.slug === review.category ? (
+                    <p>review.title</p>
+                  ) : null}
+                </>;
+              })}
+            </div>
+          </CatCard>
+        </Link>
+      ))}
     </CatWrapper>
   );
 };

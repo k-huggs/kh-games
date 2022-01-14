@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useParams } from "react-router-dom";
+
 import { UserContext } from "../../UserContext";
-import dayjs from "dayjs";
 
 // Styles
 import {
@@ -21,11 +20,12 @@ import CommentsGrid from "../CommentGrid";
 import Spinner from "../Spinner";
 
 const Comments = ({ reviewId }) => {
-  const username = useContext(UserContext);
+  const { user, isLoggedIn } = useContext(UserContext);
   const [comments, setComments] = useState([]);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [body, setBody] = useState("");
+  const username = user.username;
 
   useEffect(() => {
     setLoading(true);
@@ -45,6 +45,10 @@ const Comments = ({ reviewId }) => {
 
   const handleSubmit = (event) => {
     setLoading(true);
+    event.preventDefault();
+    if (username === "" || username === undefined) {
+      setError("Please Log In");
+    }
     postComment(body, username, reviewId)
       .then(({ comment }) => {
         setComments((currComments) => {
@@ -54,30 +58,46 @@ const Comments = ({ reviewId }) => {
         });
       })
       .catch((error) => {
-        console.log(error);
+        console.log();
+        setError(error.response.data.msg);
+        setLoading(false);
       });
+  };
+
+  const handleDelete = (commentId) => {
+    deleteComment(commentId).then(() => {
+      setComments((currComments) => {
+        return currComments.filter((comment) => {
+          return comment.comment_id !== commentId;
+        });
+      });
+    });
   };
 
   return (
     <CommentsWrapper>
       {loading && <Spinner />}
-      <CommentsContainer>
-        <CommentForm onSubmit={handleSubmit}>
-          <FormContent>
-            <label></label>
+      <CommentForm onSubmit={handleSubmit}>
+        <FormContent>
+          {error !== "" ? <p>{error}</p> : null}
+          {isLoggedIn ? (
             <textarea
               onChange={handleBodyChange}
               value={body}
-              placeholder="Speak your truth"
+              placeholder="Please Leave A Comment!"
             ></textarea>
-          </FormContent>
-          <CommentButton>Post</CommentButton>
-        </CommentForm>
+          ) : null}
+        </FormContent>
+        {isLoggedIn ? <CommentButton>Post</CommentButton> : null}
+      </CommentForm>
 
-        {comments.map((comment) => (
-          <CommentsGrid key={comment.comment_id} comment={comment} />
-        ))}
-      </CommentsContainer>
+      {comments.map((comment) => (
+        <CommentsGrid
+          key={comment.comment_id}
+          comment={comment}
+          handleDelete={handleDelete}
+        />
+      ))}
     </CommentsWrapper>
   );
 };

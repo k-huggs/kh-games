@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
 
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 // Data
 import { getReviews } from "./utils/api";
 
 // Components
 import Spinner from "./components/Spinner";
+
+// Styles
+import { CategoryWrapper, CategoryReviews } from "./Category.styles";
 
 const Category = () => {
   const { categoryname } = useParams();
@@ -27,18 +30,20 @@ const Category = () => {
   }, []);
 
   return (
-    <div>
-      <h1> Category Page </h1>
-
+    <CategoryWrapper>
+      <h1>{categoryname} reviews</h1>
       {reviews.map((review) => (
-        <section>
-          <h1>{review.title}</h1>
-          <h3>{review.owner}</h3>
-          <p>{review.review_body}</p>
-        </section>
+        <Link to={`/reviews/${review.review_id}`}>
+          <CategoryReviews key={review.review_id}>
+            <h2>{review.title}</h2>
+            <h3>Game Designed By {review.designer}</h3>
+            <p>User {review.owner}</p>
+            <p>Likes {review.votes}</p>
+          </CategoryReviews>
+        </Link>
       ))}
       {loading && <Spinner />}
-    </div>
+    </CategoryWrapper>
   );
 };
 

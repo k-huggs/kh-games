@@ -5,7 +5,13 @@ import { Link } from "react-router-dom";
 import { getUsers } from "../../utils/api";
 
 // Styles
-import { UserWrapper, UserContent } from "./UsersPage.styles";
+import {
+  UserWrapper,
+  UserContainer,
+  CardTitle,
+  CardBody,
+  UserImgWrapper,
+} from "./UsersPage.styles";
 
 // Components
 import Spinner from "../Spinner";
@@ -29,17 +35,19 @@ const UsersPage = () => {
 
   return (
     <UserWrapper>
-      <UserContent>
-        {users.map((user) => (
-          <Link to={`/users/${user.username}`}>
-            <div key={user.username}>
-              <h2>{user.username}</h2>
-              <h3>{user.name}</h3>
+      {users.map((user) => (
+        <Link to={`/users/${user.username}`}>
+          <UserContainer key={user.username} className="container">
+            <UserImgWrapper>
               <img src={user.avatar_url} />
-            </div>
-          </Link>
-        ))}
-      </UserContent>
+            </UserImgWrapper>
+            <CardTitle>
+              <h2>{user.username}</h2>
+            </CardTitle>
+          </UserContainer>
+        </Link>
+      ))}
+
       {loading && <Spinner />}
     </UserWrapper>
   );

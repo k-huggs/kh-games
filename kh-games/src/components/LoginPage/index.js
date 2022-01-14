@@ -9,10 +9,7 @@ import LoginForm from "../LoginForm";
 const LoginPage = () => {
   return (
     <LoginWrapper>
-      <LoginContainer>
-        <h1>Sign In Here</h1>
-        <LoginForm />
-      </LoginContainer>
+      <LoginForm />
     </LoginWrapper>
   );
 };

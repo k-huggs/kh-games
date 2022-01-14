@@ -60,12 +60,6 @@ export const NotFoundBtn = styled.div`
   margin-right: 10px;
   font-size: 20px;
   position: relative;
-  button {
-    padding: 20px 20px;
-    background: blue;
-    border-radius: 20px;
-    font-weight: 400;
-  }
 
   button:hover {
     background: green;

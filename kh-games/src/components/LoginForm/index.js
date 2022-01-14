@@ -36,6 +36,8 @@ const LoginForm = () => {
         <LoginContent>
           <label htmlFor="username">Username</label>
           <input
+            placeholder="Enter Username"
+            className="box"
             type="text"
             name="username"
             onChange={handleUsernameChange}
@@ -44,6 +46,8 @@ const LoginForm = () => {
           />
           <label htmlFor="password">Password</label>
           <input
+            placeholder="Enter Password"
+            className="box"
             type="password"
             name="password"
             onChange={handlePasswordChange}

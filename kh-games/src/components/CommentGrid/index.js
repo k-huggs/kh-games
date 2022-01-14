@@ -2,18 +2,22 @@ import React, { useState, useContext } from "react";
 import { UserContext } from "../../UserContext";
 
 // Styles
-import { CommentsWrapper } from "./Comments.styles";
+import {
+  CommentsBtn,
+  CommentsContent,
+  CommentsWrapper,
+} from "./Comments.styles";
 
 // Data
-import { patchCommentLikes, deleteComment } from "../../utils/api";
+import { patchCommentLikes } from "../../utils/api";
 
 // Component
 import Spinner from "../Spinner";
+import DeleteComment from "../DeleteComment";
 
-const CommentsGrid = ({ comment }) => {
+const CommentsGrid = ({ comment, deleteComment, handleDelete }) => {
   const [likes, setLikes] = useState(0);
   const [loading, setLoading] = useState(false);
-
   const { user } = useContext(UserContext);
 
   const handleLikeClick = (commentId) => {
@@ -49,42 +53,42 @@ const CommentsGrid = ({ comment }) => {
   return (
     <CommentsWrapper key={comment.comment_id}>
       {loading && <Spinner />}
-      <h3>{comment.author}</h3>
-      <p>{comment.body}</p>
-      <p>{comment.created_at.split("T")[0]}</p>
-      <p>{comment.votes + likes}</p>
-      <button
-        onClick={(event) => {
-          event.preventDefault();
-          handleLikeClick(comment.comment_id);
-        }}
-        disabled={likes === 1}
-      >
-        ♥️
-      </button>
-      <button
-        onClick={(event) => {
-          event.preventDefault();
-          handleDislikeCLick(comment.comment_id);
-        }}
-        disabled={likes === 0}
-      >
-        🥱
-      </button>
-      {comment.author === user.username ? (
-        <button
-          onClick={(event) => {
-            deleteComment(comment.comment_id);
-          }}
-        >
-          Delete
-        </button>
-      ) : null}
+      <CommentsContent>
+        <h3>{comment.author}</h3>
+        <p className="body">{comment.body}</p>
+        <p>Date Created: {comment.created_at.split("T")[0]}</p>
+        <p>Likes: {comment.votes + likes}</p>
+        <CommentsBtn>
+          <button
+            className="like"
+            onClick={(event) => {
+              event.preventDefault();
+              handleLikeClick(comment.comment_id);
+            }}
+            disabled={likes === 1}
+          >
+            ♥️
+          </button>
+          <button
+            className="dislike"
+            onClick={(event) => {
+              event.preventDefault();
+              handleDislikeCLick(comment.comment_id);
+            }}
+            disabled={likes === 0}
+          >
+            🥱
+          </button>
+          {comment.author === user.username ? (
+            <DeleteComment
+              commentId={comment.comment_id}
+              handleDelete={handleDelete}
+            />
+          ) : null}
+        </CommentsBtn>
+      </CommentsContent>
     </CommentsWrapper>
   );
 };
 
-// setNewDelete(...data);
-// spread into new array and then remove from array. - update state locally.
-// render button just for the user.
 export default CommentsGrid;

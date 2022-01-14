@@ -51,6 +51,7 @@ const RegistrationFrom = () => {
 
   return (
     <RegWrapper>
+      <h1>Sign Up Below</h1>
       <RegForm onSubmit={handleSubmit}>
         <RegContent>
           <label>

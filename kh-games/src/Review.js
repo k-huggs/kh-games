@@ -63,17 +63,25 @@ const Review = () => {
   return (
     <ReviewWrapper>
       <ReviewContent>
-        <h1>{review.title}</h1>
+        <h2>{review.title}</h2>
         <img src={review.review_img_url} />
-        <p>{review.review_body}</p>
+        <p className="body">{review.review_body}</p>
         <ReviewVotes>
-          <button onClick={handleLikeClick} disabled={likes === 1}>
+          <button
+            className="like"
+            onClick={handleLikeClick}
+            disabled={likes === 1}
+          >
             👍
           </button>
-          <button onClick={handleDislikeCLick} disabled={likes === -1}>
+          <button
+            className="dislike"
+            onClick={handleDislikeCLick}
+            disabled={likes === -1}
+          >
             👎
           </button>
-          <p>Number of Likes {review.votes + likes}</p>
+          <p>Likes: {review.votes + likes}</p>
         </ReviewVotes>
       </ReviewContent>{" "}
       <div>

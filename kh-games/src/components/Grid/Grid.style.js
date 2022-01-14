@@ -1,34 +1,63 @@
 import styled from "styled-components";
 
 export const GridWrapper = styled.div`
-  max-width: var(--maxWidth);
-  margin: 0 auto;
-  padding: 0 20px;
-
-  h3 {
-    color: black;
-  }
-
-  h3 {
-    @media screen and (max-width: 768px) {
-      font-size: var(--fontBig);
-    }
-  }
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
 `;
 
 export const GridContent = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  grid-gap: 2rem;
-  padding: 20px 20px;
-  margin: 20px 20px;
-
-  img {
-    width: 100px;
-    height: auto;
-  }
+  width: 350px;
+  overflow: hidden;
+  box-shadow: 0px 0px 15px -5px;
+  transition: 0.3s;
+  animation: ease-in-out;
+  margin: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   :hover {
-    box-shadow: 6px 8px 6px 8px;
+    background: var(--green);
+  }
+
+  img {
+    height: 400px;
+    width: 400px;
+  }
+  img:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 0px 15px 0px;
+  }
+
+  p {
+    background: transparent;
+  }
+
+  h3 {
+    background: transparent;
   }
 `;
+
+// display: grid;
+//   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+//   grid-gap: 2rem;
+//   padding: 20px 20px;
+//   margin: 20px 20px;
+
+//   img {
+//     width: 100px;
+//     height: auto;
+//   }
+
+// img {
+//   width: 100px;
+//   height: 100px;
+// }
+
+// img:hover {
+//   box-shadow: 6px 8px 6px 8px;
+//   transform: scale(1.1);
+//   box-shadow: 0px 0px 15px 0px;
+// }
