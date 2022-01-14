@@ -25,12 +25,10 @@ const CategoriesPage = () => {
         setCategories(data.categories);
       })
       .catch((error) => {
-        console.log(error);
+        setError(error);
         setLoading(false);
       });
   }, []);
-
-  console.log(reviews);
 
   return (
     <CatWrapper>

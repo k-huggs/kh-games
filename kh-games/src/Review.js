@@ -6,6 +6,9 @@ import { getReview, patchReviewLikes } from "./utils/api";
 
 //Components
 import Comments from "./components/CommentsSection";
+import Spinner from "./components/Spinner";
+
+// Styles
 import { ReviewContent, ReviewVotes, ReviewWrapper } from "./Review.style";
 
 const Review = () => {
@@ -16,9 +19,11 @@ const Review = () => {
   const [likes, setLikes] = useState(0);
 
   useEffect(() => {
+    setLoading(true);
     getReview(reviewId)
       .then((data) => {
         setReview(data.review);
+        setLoading(false);
       })
       .catch((error) => {
         console.log(error);
@@ -26,12 +31,14 @@ const Review = () => {
   }, []);
 
   const handleLikeClick = () => {
+    setLoading(true);
     setLikes((currLikes) => {
       return currLikes + 1;
     });
     patchReviewLikes(reviewId, 1)
       .then((res) => {
-        console.log(res);
+        setLoading(false);
+        return res;
       })
       .catch((error) => {
         console.log(error);
@@ -39,13 +46,13 @@ const Review = () => {
   };
 
   const handleDislikeCLick = () => {
+    setLoading(true);
     setLikes((currLikes) => {
       return currLikes - 1;
     });
-
     patchReviewLikes(reviewId, -1)
       .then((res) => {
-        console.log(res);
+        setLoading(false);
         return res;
       })
       .catch((error) => {
@@ -72,6 +79,7 @@ const Review = () => {
       <div>
         <Comments reviewId={reviewId} />
       </div>
+      {loading && <Spinner />}
     </ReviewWrapper>
   );
 };

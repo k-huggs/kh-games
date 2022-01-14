@@ -1,20 +1,29 @@
 import React, { useState, useContext } from "react";
 import { UserContext } from "../../UserContext";
+
+// Styles
+import { CommentsWrapper } from "./Comments.styles";
+
 // Data
 import { patchCommentLikes, deleteComment } from "../../utils/api";
 
+// Component
+import Spinner from "../Spinner";
+
 const CommentsGrid = ({ comment }) => {
   const [likes, setLikes] = useState(0);
+  const [loading, setLoading] = useState(false);
 
   const { user } = useContext(UserContext);
 
   const handleLikeClick = (commentId) => {
+    setLoading(true);
     setLikes((currLikes) => {
       return currLikes + 1;
     });
     patchCommentLikes(commentId, 1)
       .then((res) => {
-        console.log(res, "<<<< like patch");
+        setLoading(false);
         return res;
       })
       .catch((error) => {
@@ -23,12 +32,13 @@ const CommentsGrid = ({ comment }) => {
   };
 
   const handleDislikeCLick = (commentId) => {
+    setLoading(true);
     setLikes((currLikes) => {
       return currLikes - 1;
     });
     patchCommentLikes(commentId, -1)
       .then((res) => {
-        console.log(res, "<<<< dislike patch");
+        setLoading(false);
         return res;
       })
       .catch((error) => {
@@ -37,7 +47,8 @@ const CommentsGrid = ({ comment }) => {
   };
 
   return (
-    <div key={comment.comment_id}>
+    <CommentsWrapper key={comment.comment_id}>
+      {loading && <Spinner />}
       <h3>{comment.author}</h3>
       <p>{comment.body}</p>
       <p>{comment.created_at.split("T")[0]}</p>
@@ -69,7 +80,7 @@ const CommentsGrid = ({ comment }) => {
           Delete
         </button>
       ) : null}
-    </div>
+    </CommentsWrapper>
   );
 };
 

@@ -5,23 +5,26 @@ import { useParams } from "react-router-dom";
 // Data
 import { getReviews } from "./utils/api";
 
+// Components
+import Spinner from "./components/Spinner";
+
 const Category = () => {
   const { categoryname } = useParams();
   const [reviews, setReviews] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    setLoading(true);
     getReviews("created_at", categoryname, undefined).then((data) => {
-      console.log(data);
       setReviews((currRevs) => {
         const reviews = data.reviews.filter((review) => {
           return review.category === categoryname;
         });
+        setLoading(false);
         return reviews;
       });
     });
   }, []);
-  console.log(categoryname, "<< category");
-  console.log(reviews);
 
   return (
     <div>
@@ -34,6 +37,7 @@ const Category = () => {
           <p>{review.review_body}</p>
         </section>
       ))}
+      {loading && <Spinner />}
     </div>
   );
 };

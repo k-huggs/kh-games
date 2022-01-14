@@ -7,14 +7,20 @@ import { getUsers } from "../../utils/api";
 // Styles
 import { UserWrapper, UserContent } from "./UsersPage.styles";
 
+// Components
+import Spinner from "../Spinner";
+
 const UsersPage = () => {
   const [users, setUsers] = useState([]);
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    setLoading(true);
     getUsers()
       .then((data) => {
         setUsers(data.users);
+        setLoading(false);
       })
       .catch((error) => {
         console.log(error);
@@ -34,6 +40,7 @@ const UsersPage = () => {
           </Link>
         ))}
       </UserContent>
+      {loading && <Spinner />}
     </UserWrapper>
   );
 };

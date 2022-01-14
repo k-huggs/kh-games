@@ -14,19 +14,23 @@ import { getCategories } from "../../utils/api";
 
 //components
 import Grid from "../Grid";
+import Spinner from "../Spinner";
 
 const ReviewsPage = () => {
   const [reviews, setReviews] = useState([]);
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
   const [sort_by, setSortBy] = useState("created_at");
   const [category, setCategory] = useState("");
   const [order, setOrder] = useState("DESC");
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
+    setLoading(true);
     getReviews(sort_by, category, order)
       .then((data) => {
         setReviews(data.reviews);
+        setLoading(false);
       })
       .catch((error) => {
         console.log(error);
@@ -34,9 +38,11 @@ const ReviewsPage = () => {
   }, [sort_by, category, order]);
 
   useEffect(() => {
+    setLoading(true);
     getCategories()
       .then((data) => {
         setCategories(data.categories);
+        setLoading(false);
       })
       .catch((error) => {
         console.log(error);
@@ -44,17 +50,14 @@ const ReviewsPage = () => {
   }, []);
 
   const handleSortByChange = (event) => {
-    console.log(event.target.value, "<< sort event");
     setSortBy(event.target.value);
   };
 
   const handleCategoryChange = (event) => {
-    console.log(event.target.value, "cate event");
     setCategory(event.target.value);
   };
 
   const handleOrderChange = (event) => {
-    console.log(event.target.value, "order event");
     setOrder(event.target.value);
   };
 
@@ -89,8 +92,9 @@ const ReviewsPage = () => {
             <option value={"ASC"}>Ascending</option>
           </select>
         </ReviewContent>
-        <Grid reviews={reviews} clickable />
+        <Grid reviews={reviews} loading={loading} />
       </ReviewContainer>
+      {loading && <Spinner />}
     </ReviewWrapper>
   );
 };

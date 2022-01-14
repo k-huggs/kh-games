@@ -17,6 +17,9 @@ import {
 import { getComments, postComment, deleteComment } from "../../utils/api";
 import CommentsGrid from "../CommentGrid";
 
+// Components
+import Spinner from "../Spinner";
+
 const Comments = ({ reviewId }) => {
   const username = useContext(UserContext);
   const [comments, setComments] = useState([]);
@@ -25,9 +28,11 @@ const Comments = ({ reviewId }) => {
   const [body, setBody] = useState("");
 
   useEffect(() => {
+    setLoading(true);
     getComments(reviewId)
       .then((data) => {
         setComments(data.comments);
+        setLoading(false);
       })
       .catch((error) => {
         console.log(error);
@@ -39,11 +44,12 @@ const Comments = ({ reviewId }) => {
   };
 
   const handleSubmit = (event) => {
+    setLoading(true);
     postComment(body, username, reviewId)
       .then(({ comment }) => {
-        console.log(comment);
         setComments((currComments) => {
           const comments = [...currComments, comment];
+          setLoading(false);
           return comments;
         });
       })
@@ -54,6 +60,7 @@ const Comments = ({ reviewId }) => {
 
   return (
     <CommentsWrapper>
+      {loading && <Spinner />}
       <CommentsContainer>
         <CommentForm onSubmit={handleSubmit}>
           <FormContent>

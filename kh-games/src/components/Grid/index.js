@@ -1,13 +1,17 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { useEffect } from "react/cjs/react.development";
+
 // Styles
 import { GridWrapper, GridContent } from "./Grid.style";
+// Components
+import Spinner from "../Spinner";
+
 const PAGE_LENGTH = 5;
 
-const Grid = ({ reviews, clickable }) => {
+const Grid = ({ reviews, loading }) => {
   const [page, setPage] = useState(1);
   const [totalCount, setTotalCount] = useState(0);
+
   //set the total count to 0 and get this back from the api,
 
   return (
@@ -22,6 +26,7 @@ const Grid = ({ reviews, clickable }) => {
               alt="review-img"
             />
           </GridContent>
+          {loading && <Spinner />}
         </Link>
       ))}
       <div>
@@ -40,6 +45,7 @@ const Grid = ({ reviews, clickable }) => {
       >
         Next
       </button> */}
+      {loading && <Spinner />}
     </GridWrapper>
   );
 };

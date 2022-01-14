@@ -5,9 +5,11 @@ import { useNavigate } from "react-router-dom";
 //Styles
 import { LoginWrapper, LoginContainer, LoginContent } from "./LoginForm.styles";
 
+// Components
+import Spinner from "../Spinner";
+
 const LoginForm = () => {
-  const { adminUser, logIn, setUser, user, error, isLoggedIn } =
-    useContext(UserContext);
+  const { logIn, error, isLoggedIn } = useContext(UserContext);
 
   const [details, setDetails] = useState({ username: "", password: "" });
 
