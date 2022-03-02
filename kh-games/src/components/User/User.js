@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 // Data
-import { getUserByUsername, getReviews } from "./utils/api";
+import { getUserByUsername, getReviews } from "../../utils/api";
 
 // Components
-import Spinner from "./components/Spinner";
+import Spinner from "../Spinner";
 
 const User = () => {
   const { username } = useParams();

@@ -11,7 +11,7 @@ import Spinner from "../Spinner";
 const LoginForm = () => {
   const { logIn, error, isLoggedIn } = useContext(UserContext);
 
-  const [details, setDetails] = useState({ username: "", password: "" });
+  const [details, setDetails] = useState({ username: "" });
 
   let navigate = useNavigate();
 
@@ -24,17 +24,13 @@ const LoginForm = () => {
     setDetails({ ...details, username: event.target.value });
   };
 
-  const handlePasswordChange = (event) => {
-    setDetails({ ...details, password: event.target.value });
-  };
-
   return (
     <LoginWrapper>
       <LoginContainer onSubmit={handleSubmit}>
         <h2>Sign In Here!</h2>
         {error !== "" ? <div className="errormsg">{error} </div> : ""}
         <LoginContent>
-          <label htmlFor="username">Username</label>
+          {error == "" ? <label htmlFor="username">Username</label> : null}
           <input
             placeholder="Enter Username"
             className="box"
@@ -43,16 +39,6 @@ const LoginForm = () => {
             onChange={handleUsernameChange}
             required
             value={details.username}
-          />
-          <label htmlFor="password">Password</label>
-          <input
-            placeholder="Enter Password"
-            className="box"
-            type="password"
-            name="password"
-            onChange={handlePasswordChange}
-            required
-            value={details.password}
           />
           <input type="submit" value="login" className="button" />
           {isLoggedIn && navigate("/welcome")}

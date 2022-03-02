@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 
-// Components
-import Spinner from "../Spinner";
+//styles
+import { DeleteBtn } from "./DeleteComment.style";
 
 const DeleteComment = ({ commentId, handleDelete }) => {
   return (
     <>
-      <div>
+      <DeleteBtn>
         <button
+          className="delete"
           onClick={(event) => {
             event.preventDefault();
             handleDelete(commentId);
@@ -15,7 +16,7 @@ const DeleteComment = ({ commentId, handleDelete }) => {
         >
           Delete
         </button>
-      </div>
+      </DeleteBtn>
     </>
   );
 };

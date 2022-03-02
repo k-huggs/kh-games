@@ -16,6 +16,7 @@ export const ReviewContent = styled.div`
     margin-left: 2rem;
     margin-right: 1rem;
     padding-right: 1rem;
+    max-width: 60%;
   }
 
   h2 {
@@ -44,5 +45,13 @@ export const ReviewVotes = styled.div`
   .like:hover {
     background: var(--green);
     color: var(--white);
+  }
+
+  .liked {
+    background: var(--green);
+  }
+
+  .disliked {
+    background: var(--red);
   }
 `;

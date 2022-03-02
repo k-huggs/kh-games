@@ -3,10 +3,10 @@ import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 
 // Data
-import { getReviews } from "./utils/api";
+import { getReviews } from "../../utils/api";
 
 // Components
-import Spinner from "./components/Spinner";
+import Spinner from "../Spinner";
 
 // Styles
 import { CategoryWrapper, CategoryReviews } from "./Category.styles";

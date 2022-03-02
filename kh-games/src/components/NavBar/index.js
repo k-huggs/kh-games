@@ -1,6 +1,5 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import { UserContext } from "../../UserContext";
-import { Link } from "react-router-dom";
 
 //Styles
 import {
@@ -34,7 +33,6 @@ const NavBar = () => {
             Reviews
           </NavLink>
         </NavBarContent>
-
         <NavBarBtn>
           {!isLoggedIn ? (
             <NavBtnLink to="/login">
@@ -47,9 +45,11 @@ const NavBar = () => {
               </button>
             </NavBtnLink>
           )}
-          <NavBtnLink to="/register">
-            <button className="register">Register</button>
-          </NavBtnLink>
+          {!isLoggedIn ? (
+            <NavBtnLink to="/register">
+              <button className="register">Register</button>
+            </NavBtnLink>
+          ) : null}
         </NavBarBtn>
       </Nav>
     </>

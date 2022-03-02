@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { UserProvider } from "./UserContext";
 
@@ -12,13 +12,13 @@ import Home from "./components/Home";
 import NotFound from "./components/NotFound";
 import LoginPage from "./components/LoginPage";
 import ReviewsPage from "./components/ReviewsPage";
-import Review from "./Review";
+import Review from "./components/Review/Review";
 import UsersPage from "./components/UsersPage";
 import WelcomePage from "./components/WelcomePage";
 import CategoriesPage from "./components/CategoriesPage";
 import RegistrationFrom from "./components/RegisterForm";
-import User from "./User";
-import Category from "./Category";
+import User from "./components/User/User";
+import Category from "./components/Category/Category";
 
 function App() {
   return (

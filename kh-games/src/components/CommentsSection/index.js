@@ -35,7 +35,7 @@ const Comments = ({ reviewId }) => {
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, [comments]);
 
   const handleBodyChange = (event) => {
     setBody(event.target.value);
@@ -52,11 +52,12 @@ const Comments = ({ reviewId }) => {
         setComments((currComments) => {
           const comments = [...currComments, comment];
           setLoading(false);
+          setBody("");
+          alert("Comment Successfully posted!");
           return comments;
         });
       })
       .catch((error) => {
-        console.log();
         setError(error.response.data.msg);
         setLoading(false);
       });
@@ -74,7 +75,6 @@ const Comments = ({ reviewId }) => {
 
   return (
     <CommentsWrapper>
-      {loading && <Spinner />}
       <CommentForm onSubmit={handleSubmit}>
         <FormContent>
           {error !== "" ? <p>{error}</p> : null}
@@ -88,7 +88,6 @@ const Comments = ({ reviewId }) => {
         </FormContent>
         {isLoggedIn ? <CommentButton>Post</CommentButton> : null}
       </CommentForm>
-
       {comments.map((comment) => (
         <CommentsGrid
           key={comment.comment_id}

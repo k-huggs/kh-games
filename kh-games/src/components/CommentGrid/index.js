@@ -12,7 +12,6 @@ import {
 import { patchCommentLikes } from "../../utils/api";
 
 // Component
-import Spinner from "../Spinner";
 import DeleteComment from "../DeleteComment";
 
 const CommentsGrid = ({ comment, deleteComment, handleDelete }) => {
@@ -52,7 +51,6 @@ const CommentsGrid = ({ comment, deleteComment, handleDelete }) => {
 
   return (
     <CommentsWrapper key={comment.comment_id}>
-      {loading && <Spinner />}
       <CommentsContent>
         <h3>{comment.author}</h3>
         <p className="body">{comment.body}</p>
@@ -79,13 +77,14 @@ const CommentsGrid = ({ comment, deleteComment, handleDelete }) => {
           >
             🥱
           </button>
-          {comment.author === user.username ? (
-            <DeleteComment
-              commentId={comment.comment_id}
-              handleDelete={handleDelete}
-            />
-          ) : null}
         </CommentsBtn>
+        {comment.author === user.username ? (
+          <DeleteComment
+            className="delete"
+            commentId={comment.comment_id}
+            handleDelete={handleDelete}
+          />
+        ) : null}
       </CommentsContent>
     </CommentsWrapper>
   );

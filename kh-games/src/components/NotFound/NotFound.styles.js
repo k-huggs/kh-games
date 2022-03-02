@@ -1,68 +1,44 @@
 import styled from "styled-components";
 
 export const NotFoundWrapper = styled.div`
-  background: white;
   display: flex;
   justify-content: center;
   flex-direction: column;
-  height: 800px;
+  align-items: center;
   position: relative;
-  z-index: 1;
 `;
 
 export const NotFoundH1 = styled.h1`
   color: black;
-  font-size: 48px;
+  font-size: 2rem;
   text-align: center;
-  border-bottom: 2px solid black;
-  padding: 30px;
-
-  @media screen and (max-width: 768px) {
-    font-size: 40px;
-  }
-
-  @media screen and (max-width: 480px) {
-    font-size: 32px;
-  }
+  margin-bottom: 5rem;
+  margin-top: 2rem;
 `;
 
 export const NotFoundVid = styled.video`
-  width: 80%;
-  height: 80%;
-  -o-object-fit: cover;
+  width: 30%;
+  height: 30%;
+`;
+
+export const VidWrapper = styled.div`
+  padding: 2rem;
+  background: white;
+  width: 100%;
 `;
 
 export const NotFoundContent = styled.div`
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
-`;
-
-export const NotFoundH3 = styled.h3``;
-
-export const NotFoundText = styled.p`
-  margin-top: 24px;
-  color: black;
-  font-size: 24px;
-  text-align: center;
-  max-width: 600px;
-
-  @media screen and (max-width: 768px) {
-    font-size: 24px;
-  }
-
-  @media screen and (max-width: 480px) {
-    font-size: 18px;
-  }
+  width: 100%;
+  background: white;
 `;
 
 export const NotFoundBtn = styled.div`
-  margin-right: 10px;
   font-size: 20px;
-  position: relative;
-
+  margin-top: 3rem;
   button:hover {
-    background: green;
-    box-shadow: 8px 6px 8px 6px;
+    background: var(--green);
   }
 `;
