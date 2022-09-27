@@ -5,30 +5,34 @@ export const GridWrapper = styled.div`
   flex-wrap: wrap;
   justify-content: space-around;
   align-items: center;
+  a {
+    text-decoration: none;
+  }
 `;
 
 export const GridContent = styled.div`
+  display: flex;
   width: 350px;
+  height: 800px;
   overflow: hidden;
   box-shadow: 0px 0px 15px -5px;
   transition: 0.3s;
   animation: ease-in-out;
   margin: 30px;
-  display: flex;
   flex-direction: column;
   align-items: center;
-
+  margin-top: 60px;
+  padding: 24px;
+  text-align: center;
   :hover {
     background: var(--green);
+    transform: scale(1.03);
+    box-shadow: 0px 0px 15px 0px;
   }
 
   img {
     height: 400px;
     width: 400px;
-  }
-  img:hover {
-    transform: scale(1.1);
-    box-shadow: 0px 0px 15px 0px;
   }
 
   p {
@@ -37,27 +41,6 @@ export const GridContent = styled.div`
 
   h3 {
     background: transparent;
+    min-height: 44px;
   }
 `;
-
-// display: grid;
-//   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-//   grid-gap: 2rem;
-//   padding: 20px 20px;
-//   margin: 20px 20px;
-
-//   img {
-//     width: 100px;
-//     height: auto;
-//   }
-
-// img {
-//   width: 100px;
-//   height: 100px;
-// }
-
-// img:hover {
-//   box-shadow: 6px 8px 6px 8px;
-//   transform: scale(1.1);
-//   box-shadow: 0px 0px 15px 0px;
-// }
