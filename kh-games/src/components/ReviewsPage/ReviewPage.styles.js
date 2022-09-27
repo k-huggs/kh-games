@@ -6,18 +6,19 @@ export const ReviewWrapper = styled.div`
   justify-content: center;
   width: 100%;
 
-  h1 {
-    width: 50%;
-    text-align: center;
-  }
+  
 `;
 
-export const ReviewContainer = styled.div``;
+export const ReviewContainer = styled.div`
+h1 {
+    text-align: center;
+  }`;
 
 export const ReviewContent = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  margin-top: 40px;
 `;
 
 export const ReviewSort = styled.div`
