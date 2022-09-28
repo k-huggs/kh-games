@@ -11,7 +11,6 @@ const PAGE_LENGTH = 5;
 const Grid = ({ reviews, loading }) => {
   const [page, setPage] = useState(1);
   const [totalCount, setTotalCount] = useState(0);
-
   return (
     <GridWrapper>
       {reviews.map((review, index) => (
@@ -44,7 +43,7 @@ const Grid = ({ reviews, loading }) => {
           onClick={(event) => {
             setPage((currPage) => currPage + 1);
           }}
-          disabled={PAGE_LENGTH * page >= totalCount}
+          // disabled={PAGE_LENGTH * page >= totalCount}
         >
           Next
         </button>

@@ -9,23 +9,23 @@ import {
   VideoBg,
   Content,
   ButtonWrapper,
-  H1,
+  H1, ButtonHome
 } from "./WelcomePage.styles";
 import video from "../../videos/home.mp4";
 
 const WelcomePage = () => {
   const { user, logOut } = useContext(UserContext);
-
+  console.log(user)
   return (
     <WelcWrapper>
       <WelcBg>
         <VideoBg autoPlay loop muted src={video} type="video/mp4" />
       </WelcBg>
       <Content>
-        <H1>Welcome {user.username} </H1>
+        {user.username ? <H1>Welcome {user.username} to KH Games </H1> : <H1>Welcome to KH Games</H1>}
         <ButtonWrapper>
           <Link to="/">
-            <button className="home">Home</button>
+            <ButtonHome className="home">Home</ButtonHome>
           </Link>
           <Link to="/login">
             <button className="logout" onClick={logOut}>

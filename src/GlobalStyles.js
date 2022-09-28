@@ -25,6 +25,7 @@ export const GlobalStyle = createGlobalStyle`
 * {
     box-sizing: border-box;
     background: #E7E9BB;
+    
     color: #403B4A;
     font-family: 'PT Mono', monospace;
 }
@@ -33,7 +34,6 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box
-    
 }
 
 h1 {

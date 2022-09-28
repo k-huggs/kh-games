@@ -8,6 +8,16 @@ export const GridWrapper = styled.div`
   a {
     text-decoration: none;
   }
+
+  button {
+    
+  }
+
+  button:hover {
+    background: var(--green);
+    transform: scale(1.03);
+    box-shadow: 0px 0px 15px 0px;
+  }
 `;
 
 export const GridContent = styled.div`
@@ -24,6 +34,7 @@ export const GridContent = styled.div`
   margin-top: 60px;
   padding: 24px;
   text-align: center;
+  border-radius: 15px;
   :hover {
     background: var(--green);
     transform: scale(1.03);
