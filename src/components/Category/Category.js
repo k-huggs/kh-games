@@ -27,14 +27,14 @@ const Category = () => {
         return reviews;
       });
     });
-  }, []);
+  }, [categoryname]);
 
   return (
     <CategoryWrapper>
       <h1>{categoryname} reviews</h1>
       {reviews.map((review) => (
-        <Link to={`/reviews/${review.review_id}`}>
-          <CategoryReviews key={review.review_id}>
+        <Link to={`/reviews/${review.review_id}`} key={review.review_id}>
+          <CategoryReviews >
             <h2>{review.title}</h2>
             <h3>Game Designed By {review.designer}</h3>
             <p>User {review.owner}</p>

@@ -34,14 +34,14 @@ const CategoriesPage = () => {
     <CatWrapper>
       {loading && <Spinner />}
       {categories.map((category, index) => (
-        <Link to={`/categories/${category.slug}`}>
-          <CatCard key={index}>
+        <Link to={`/categories/${category.slug}`} key={index} >
+          <CatCard>
             <h2>{category.slug}</h2>
             <p>{category.description}</p>
             <div>
               {reviews.filter((review) => {
                 <>
-                  return{" "}
+                  return
                   {category.slug === review.category ? (
                     <p>review.title</p>
                   ) : null}

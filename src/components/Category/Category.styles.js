@@ -6,6 +6,7 @@ export const CategoryWrapper = styled.div`
   flex-direction: column;
   flex-wrap: wrap;
 
+
   h1 {
     margin-top: 6vh;
     padding: 30px;
@@ -25,6 +26,7 @@ export const CategoryReviews = styled.div`
   border-radius: 20px;
   background: var(--pink);
   width: 40vh;
+
 
   :hover {
     box-shadow: 6px 8px 6px 8px;

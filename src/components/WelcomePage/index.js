@@ -15,7 +15,6 @@ import video from "../../videos/home.mp4";
 
 const WelcomePage = () => {
   const { user, logOut } = useContext(UserContext);
-  console.log(user)
   return (
     <WelcWrapper>
       <WelcBg>

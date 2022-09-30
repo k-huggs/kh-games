@@ -4,13 +4,14 @@ const gameApi = axios.create({
   baseURL: "https://khncgames.herokuapp.com/api",
 });
 
-export const getReviews = (sort_by, category, order) => {
+export const getReviews = (sort_by, category, order, page) => {
   return gameApi
     .get(`/reviews`, {
       params: {
         sort_by: sort_by,
         category: category,
         order: order,
+        page: page
       },
     })
     .then((res) => {
@@ -67,7 +68,6 @@ export const patchCommentLikes = (commentId, likes) => {
 };
 
 export const postComment = (body, username, reviewId) => {
-  console.log(body, username, reviewId);
   return gameApi
     .post(`/reviews/${reviewId}/comments`, {
       username: username,

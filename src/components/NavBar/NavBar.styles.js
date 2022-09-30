@@ -108,3 +108,18 @@ export const NavBtnLink = styled(Link)`
     color: #fff;
   }
 `;
+
+export const NavBarUser =styled.span`
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ flex-direction: column;
+ background: transparent;
+
+ img {
+  background: transparent;
+  height: 45px;
+  width: 45px;
+  border-radius: 50%;
+ }
+`

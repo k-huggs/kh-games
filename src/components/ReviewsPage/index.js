@@ -12,9 +12,11 @@ import {
 import { getReviews } from "../../utils/api";
 import { getCategories } from "../../utils/api";
 
-//components
+//Components
 import Grid from "../Grid";
 import Spinner from "../Spinner";
+
+const PAGE_LENGTH = 5;
 
 const ReviewsPage = () => {
   const [reviews, setReviews] = useState([]);
@@ -25,6 +27,10 @@ const ReviewsPage = () => {
   const [order, setOrder] = useState("DESC");
   const [categories, setCategories] = useState([]);
 
+  const [page, setPage] = useState(1);
+  const [totalCount, setTotalCount] = useState(0);
+  
+
   useEffect(() => {
     setLoading(true);
     getReviews(sort_by, category, order)
@@ -33,7 +39,7 @@ const ReviewsPage = () => {
         setLoading(false);
       })
       .catch((error) => {
-        console.log(error);
+      throw(error);
       });
   }, [sort_by, category, order]);
 
@@ -45,7 +51,7 @@ const ReviewsPage = () => {
         setLoading(false);
       })
       .catch((error) => {
-        console.log(error);
+        throw(error);
       });
   }, []);
 
@@ -92,7 +98,23 @@ const ReviewsPage = () => {
             <option value={"ASC"}>Ascending</option>
           </select>
         </ReviewContent>
-        <Grid reviews={reviews} loading={loading} />
+        <Grid setReviews={setReviews} reviews={reviews} loading={loading} />
+        <button
+          onClick={(event) => {
+            setPage((currPage) => currPage - 1);
+          }}
+          disabled={page === 1}
+        >
+          Previous
+        </button>
+        <button
+          onClick={(event) => {
+            setPage((currPage) => currPage + 1);
+          }}
+          disabled={PAGE_LENGTH * page >= totalCount}
+        >
+          Next
+        </button>
       </ReviewContainer>
     </ReviewWrapper>
   );

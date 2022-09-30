@@ -19,7 +19,7 @@ export const useReviews = () => {
         setReviews(data.reviews);
       })
       .catch((error) => {
-        console.log(error);
+        throw(error);
       });
   }, []);
 

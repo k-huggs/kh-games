@@ -5,6 +5,9 @@ export const UserWrapper = styled.div`
   flex-wrap: wrap;
   justify-content: space-around;
   align-items: center;
+  a {
+    text-decoration: none;
+  }
 `;
 
 export const UserContainer = styled.div`
@@ -18,6 +21,13 @@ export const UserContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  
+  
+
+  :hover {
+    transform: scale(1.03);
+    box-shadow: 0px 0px 15px 0px;
+  }
 `;
 
 export const UserImgWrapper = styled.div`
@@ -26,10 +36,7 @@ export const UserImgWrapper = styled.div`
     height: 400px;
     width: 400px;
   }
-  img:hover {
-    transform: scale(1.1);
-    box-shadow: 0px 0px 15px 0px;
-  }
+
 `;
 
 export const CardTitle = styled.div`

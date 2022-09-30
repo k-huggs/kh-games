@@ -28,17 +28,17 @@ const UsersPage = () => {
         setLoading(false);
       })
       .catch((error) => {
-        console.log(error);
+        throw(error);
       });
   }, []);
 
   return (
     <UserWrapper>
       {users.map((user) => (
-        <Link to={`/users/${user.username}`}>
+        <Link to={`/users/${user.username}`} key={user.username}>
           <UserContainer key={user.username} className="container">
             <UserImgWrapper>
-              <img src={user.avatar_url} />
+              <img src={user.avatar_url} alt={`${user.username} avatar`}/>
             </UserImgWrapper>
             <CardTitle>
               <h2>{user.username}</h2>

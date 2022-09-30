@@ -13,6 +13,8 @@ const User = () => {
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(false);
 
+  console.log(user)
+
   useEffect(() => {
     setLoading(true);
     getUserByUsername(username)
@@ -21,7 +23,7 @@ const User = () => {
         setLoading(false);
       })
       .catch((error) => {
-        console.log(error);
+        throw(error);
       });
   }, [username]);
 
@@ -36,20 +38,20 @@ const User = () => {
         return reviews;
       });
     });
-  }, []);
+  }, [username]);
 
   return (
     <div>
-      <img src={user.avatar_url} />
+      <img src={user.avatar_url} alt={`${user.username} avatar`} />
       <h1>{user.username}</h1>
-      <div>
+      <main>
         {reviews.map((review) => (
           <section>
             <h1>{review.title}</h1>
             <p>{review.review_body}</p>
           </section>
         ))}
-      </div>
+      </main>
       {loading && <Spinner />}
     </div>
   );

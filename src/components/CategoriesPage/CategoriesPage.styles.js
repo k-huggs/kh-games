@@ -4,6 +4,10 @@ export const CatWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+
+  a {
+    text-decoration: none;
+  }
 `;
 
 export const CatCard = styled.div`

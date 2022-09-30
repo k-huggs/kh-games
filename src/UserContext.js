@@ -5,16 +5,15 @@ export const UserContext = createContext();
 export const UserProvider = (props) => {
   const [user, setUser] = useState({});
   const [error, setError] = useState("");
-  const adminUser = { username: "jessjelly" };
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const logIn = (details) => {
-    if (details.username === adminUser.username) {
-      setUser({ username: details.username });
+    if (details.username) {
+      setUser(details);
       setError("");
       setIsLoggedIn(true);
     } else {
-      setError("Correct username is 'jessjelly'");
+      
       setIsLoggedIn(false);
     }
   };
@@ -32,9 +31,8 @@ export const UserProvider = (props) => {
         logOut,
         logIn,
         isLoggedIn,
-        adminUser,
-        logOut,
         error,
+        setError
       }}
     >
       {props.children}

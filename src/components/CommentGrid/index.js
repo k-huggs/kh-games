@@ -30,7 +30,7 @@ const CommentsGrid = ({ comment, deleteComment, handleDelete }) => {
         return res;
       })
       .catch((error) => {
-        console.log(error);
+        throw(error)
       });
   };
 
@@ -45,7 +45,7 @@ const CommentsGrid = ({ comment, deleteComment, handleDelete }) => {
         return res;
       })
       .catch((error) => {
-        console.log(error);
+       throw(error);
       });
   };
 

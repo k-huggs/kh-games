@@ -7,21 +7,25 @@ import { LoginWrapper, LoginContainer, LoginContent } from "./LoginForm.styles";
 
 // Components
 import Spinner from "../Spinner";
+import { getUserByUsername } from "../../utils/api";
 
 const LoginForm = () => {
-  const { logIn, error, isLoggedIn } = useContext(UserContext);
-
-  const [details, setDetails] = useState({ username: "" });
-
+  const { logIn, error, isLoggedIn, setError } = useContext(UserContext);
+  const [newUsername, setNewUsername] = useState("")
+  const [details, setDetails] = useState({});
   let navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    logIn(details);
+    getUserByUsername(newUsername).then((res) => {
+      logIn(res.user);
+    }).catch((err) => {
+      setError("User Not Found - Try jessjelly")
+    })
   };
 
   const handleUsernameChange = (event) => {
-    setDetails({ ...details, username: event.target.value });
+    setNewUsername(event.target.value)
   };
 
   return (
@@ -30,7 +34,7 @@ const LoginForm = () => {
         <h2>Sign In Here!</h2>
         {error !== "" ? <div className="errormsg">{error} </div> : ""}
         <LoginContent>
-          {error == "" ? <label htmlFor="username">Username</label> : null}
+          {error === "" ? <label htmlFor="username">Username</label> : null}
           <input
             placeholder="Enter Username"
             className="box"

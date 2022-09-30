@@ -5,8 +5,6 @@ export const ReviewWrapper = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
-
-  
 `;
 
 export const ReviewContainer = styled.div`
@@ -25,3 +23,7 @@ export const ReviewSort = styled.div`
   display: flex;
   justify-content: space-between;
 `;
+
+export const ReviewButtonsSection = styled.section`
+display: flex;
+`

@@ -26,7 +26,7 @@ const Review = () => {
         setLoading(false);
       })
       .catch((error) => {
-        console.log(error);
+        throw(error);
       });
   }, []);
 
@@ -41,7 +41,7 @@ const Review = () => {
         return res;
       })
       .catch((error) => {
-        console.log(error);
+        throw(error);
       });
   };
 
@@ -56,7 +56,7 @@ const Review = () => {
         return res;
       })
       .catch((error) => {
-        console.log(error);
+        throw(error);
       });
   };
 

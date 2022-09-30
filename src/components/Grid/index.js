@@ -3,19 +3,20 @@ import { Link } from "react-router-dom";
 
 // Styles
 import { GridWrapper, GridContent } from "./Grid.style";
+
 // Components
 import Spinner from "../Spinner";
 
-const PAGE_LENGTH = 5;
+
 
 const Grid = ({ reviews, loading }) => {
-  const [page, setPage] = useState(1);
-  const [totalCount, setTotalCount] = useState(0);
+  
+  
   return (
     <GridWrapper>
       {reviews.map((review, index) => (
-        <Link to={`/reviews/${review.review_id}`}>
-          <GridContent key={review.review_id}>
+        <Link to={`/reviews/${review.review_id}`} key={review.review_id}>
+          <GridContent >
             <h3>{review.title}</h3>
             <p>{review.designer}</p>
             <img
@@ -30,24 +31,6 @@ const Grid = ({ reviews, loading }) => {
           {loading && <Spinner />}
         </Link>
       ))}
-      <div>
-        <button
-          onClick={(event) => {
-            setPage((currPage) => currPage - 1);
-          }}
-          disabled={page === 1}
-        >
-          Previous
-        </button>
-        <button
-          onClick={(event) => {
-            setPage((currPage) => currPage + 1);
-          }}
-          // disabled={PAGE_LENGTH * page >= totalCount}
-        >
-          Next
-        </button>
-      </div>
       {loading && <Spinner />}
     </GridWrapper>
   );

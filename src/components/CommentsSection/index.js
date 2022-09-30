@@ -33,9 +33,9 @@ const Comments = ({ reviewId }) => {
         setLoading(false);
       })
       .catch((error) => {
-        console.log(error);
+      throw(error);
       });
-  }, [comments]);
+  }, [comments, reviewId]);
 
   const handleBodyChange = (event) => {
     setBody(event.target.value);
@@ -83,6 +83,7 @@ const Comments = ({ reviewId }) => {
               onChange={handleBodyChange}
               value={body}
               placeholder="Please Leave A Comment!"
+              required
             ></textarea>
           ) : null}
         </FormContent>

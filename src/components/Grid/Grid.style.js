@@ -9,9 +9,7 @@ export const GridWrapper = styled.div`
     text-decoration: none;
   }
 
-  button {
-    
-  }
+ 
 
   button:hover {
     background: var(--green);

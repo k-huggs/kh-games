@@ -61,15 +61,29 @@ export const H1 = styled.h1`
 export const ButtonWrapper = styled.div`
   background: transparent;
   font-size: 20px;
+  margin: 20px;
+  
+
+  button.home {
+  background: var(--green);
+}
+
+button {
+  /* transition: 0.3s;
+    animation: ease-in-out; */
+    transform: scale(1.03);
+}
 
   button.home:hover {
-    background: var(--green);
-    border: var(--pink);
+    border-color: var(--white);
+  }
+
+  button.logout {
+    background: var(--pink);
   }
 
   button.logout:hover {
-    background: var(--pink);
-    border: var(--purple);
+    border-color: var(--white)
   }
 
   @media screen and (max-width: 768px) {
@@ -78,6 +92,10 @@ export const ButtonWrapper = styled.div`
 
   @media screen and (max-width: 480px) {
     font-size: 12px;
+  }
+
+  a {
+    background: transparent
   }
 `;
 

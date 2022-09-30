@@ -9,10 +9,11 @@ import {
   NavLink,
   Bars,
   NavBtnLink,
+  NavBarUser
 } from "./NavBar.styles";
 
 const NavBar = () => {
-  const { isLoggedIn, logOut } = useContext(UserContext);
+  const { isLoggedIn, logOut, user } = useContext(UserContext);
   const handleClick = () => {
     logOut();
   };
@@ -39,12 +40,16 @@ const NavBar = () => {
               <button className="login">Login</button>
             </NavBtnLink>
           ) : (
+            <>
+            <NavBarUser>
+            <img alt={`${user.username} avatar`} src={user.avatar_url} />
+            </NavBarUser>
             <NavBtnLink to="/login">
               <button className="logout" onClick={handleClick}>
                 Log Out
               </button>
             </NavBtnLink>
-          )}
+            </>)}
           {!isLoggedIn ? (
             <NavBtnLink to="/register">
               <button className="register">Register</button>
