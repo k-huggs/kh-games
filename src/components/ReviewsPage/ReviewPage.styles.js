@@ -4,6 +4,7 @@ export const ReviewWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   width: 100%;
 `;
 
@@ -26,4 +27,28 @@ export const ReviewSort = styled.div`
 
 export const ReviewButtonsSection = styled.section`
 display: flex;
+margin: 30px;
+#next:hover {
+    background: var(--green);
+    transform: scale(1.10);
+    box-shadow: 0px 0px 15px 0px;
+  }
+
+  #previous {
+    margin-right: 20px;
+  }
+  
+  #next {
+    margin-left: 20px;
+  }
+
+  #previous:hover{
+    background: var(--red);
+    transform: scale(1.10);
+    box-shadow: 0px 0px 15px 0px;
+  }
+
+  .disable {
+      background: grey;
+  }
 `

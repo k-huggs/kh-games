@@ -28,10 +28,9 @@ const Grid = ({ reviews, loading }) => {
             <p>Likes: {review.votes}</p>
             <p>Category: {review.category}</p>
           </GridContent>
-          {loading && <Spinner />}
         </Link>
       ))}
-      {loading && <Spinner />}
+    
     </GridWrapper>
   );
 };

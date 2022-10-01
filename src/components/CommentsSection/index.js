@@ -12,10 +12,9 @@ import {
 
 // Data
 import { getComments, postComment, deleteComment } from "../../utils/api";
-import CommentsGrid from "../CommentGrid";
+import IndividualComment from "../IndividualComment";
 
 // Components
-import Spinner from "../Spinner";
 
 const Comments = ({ reviewId }) => {
   const { user, isLoggedIn } = useContext(UserContext);
@@ -35,7 +34,7 @@ const Comments = ({ reviewId }) => {
       .catch((error) => {
       throw(error);
       });
-  }, [comments, reviewId]);
+  }, []);
 
   const handleBodyChange = (event) => {
     setBody(event.target.value);
@@ -90,7 +89,7 @@ const Comments = ({ reviewId }) => {
         {isLoggedIn ? <CommentButton>Post</CommentButton> : null}
       </CommentForm>
       {comments.map((comment) => (
-        <CommentsGrid
+        <IndividualComment
           key={comment.comment_id}
           comment={comment}
           handleDelete={handleDelete}

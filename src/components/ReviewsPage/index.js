@@ -6,6 +6,7 @@ import {
   ReviewContent,
   ReviewContainer,
   ReviewSort,
+  ReviewButtonsSection
 } from "./ReviewPage.styles";
 
 // Data
@@ -16,32 +17,31 @@ import { getCategories } from "../../utils/api";
 import Grid from "../Grid";
 import Spinner from "../Spinner";
 
-const PAGE_LENGTH = 5;
+
 
 const ReviewsPage = () => {
   const [reviews, setReviews] = useState([]);
-  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [sort_by, setSortBy] = useState("created_at");
   const [category, setCategory] = useState("");
   const [order, setOrder] = useState("DESC");
   const [categories, setCategories] = useState([]);
-
   const [page, setPage] = useState(1);
   const [totalCount, setTotalCount] = useState(0);
-  
+  const PAGE_LENGTH = 10;
 
   useEffect(() => {
     setLoading(true);
-    getReviews(sort_by, category, order)
+    getReviews(sort_by, category, order, page)
       .then((data) => {
         setReviews(data.reviews);
+        setTotalCount(data.reviews.length)
         setLoading(false);
       })
       .catch((error) => {
       throw(error);
       });
-  }, [sort_by, category, order]);
+  }, [sort_by, category, order, page]);
 
   useEffect(() => {
     setLoading(true);
@@ -67,6 +67,14 @@ const ReviewsPage = () => {
     setOrder(event.target.value);
   };
 
+  const handlePreviousClick = (event) => {     
+    setPage((currPage) => currPage - 1);
+  }
+  
+  const handleNextClick = (event) => {
+    setPage((currPage) => currPage + 1);
+  }
+
   return (
     <ReviewWrapper>
       <ReviewContainer>
@@ -77,7 +85,7 @@ const ReviewsPage = () => {
               Sort By:
               <option value={"created_at"}>Created Date</option>
               <option value={"comment_count"}>Comment Count</option>
-              <option value={"votes"}>Votes</option>
+              <option value={"votes"}>Likes</option>
               <option value={"owner"}>Author</option>
             </select>
           </ReviewSort>
@@ -98,24 +106,22 @@ const ReviewsPage = () => {
             <option value={"ASC"}>Ascending</option>
           </select>
         </ReviewContent>
-        <Grid setReviews={setReviews} reviews={reviews} loading={loading} />
-        <button
-          onClick={(event) => {
-            setPage((currPage) => currPage - 1);
-          }}
+        {loading ? <Spinner /> : <Grid setReviews={setReviews} reviews={reviews} loading={loading} />}
+      </ReviewContainer>
+      <ReviewButtonsSection>
+        <button id="previous"
+          onClick={handlePreviousClick} 
           disabled={page === 1}
         >
           Previous
         </button>
-        <button
-          onClick={(event) => {
-            setPage((currPage) => currPage + 1);
-          }}
-          disabled={PAGE_LENGTH * page >= totalCount}
+        <button id={"next"}
+          onClick={handleNextClick}
+          disabled={PAGE_LENGTH > totalCount}
         >
           Next
         </button>
-      </ReviewContainer>
+        </ReviewButtonsSection>
     </ReviewWrapper>
   );
 };

@@ -13,7 +13,7 @@ const LoginForm = () => {
   const { logIn, error, isLoggedIn, setError } = useContext(UserContext);
   const [newUsername, setNewUsername] = useState("")
   const [details, setDetails] = useState({});
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();

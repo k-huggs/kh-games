@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 // Data
 import { getReview, patchReviewLikes } from "../../utils/api";
@@ -17,6 +17,8 @@ const Review = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [likes, setLikes] = useState(0);
+  const navigate = useNavigate()
+
 
   useEffect(() => {
     setLoading(true);
@@ -26,9 +28,9 @@ const Review = () => {
         setLoading(false);
       })
       .catch((error) => {
-        throw(error);
+        navigate(`/notfound`)
       });
-  }, []);
+  }, [reviewId]);
 
   const handleLikeClick = () => {
     setLoading(true);
@@ -64,7 +66,7 @@ const Review = () => {
     <ReviewWrapper>
       <ReviewContent>
         <h2>{review.title}</h2>
-        <img src={review.review_img_url} />
+        <img src={review.review_img_url} alt={review.title}/>
         <p className="body">{review.review_body}</p>
         <p>Likes: {review.votes + likes}</p>
         <ReviewVotes>

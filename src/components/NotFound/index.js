@@ -13,7 +13,7 @@ import video from "../../videos/lost.mp4";
 const NotFound = () => {
   return (
     <NotFoundWrapper>
-      <NotFoundH1>This Page Has Not Been Found</NotFoundH1>
+      <NotFoundH1>404 - This Page Has Not Been Found</NotFoundH1>
       <NotFoundContent>
         <NotFoundVid autoPlay loop muted src={video} type="video/mp4" />
       </NotFoundContent>

@@ -17,6 +17,7 @@ export const CatCard = styled.div`
   justify-content: center;
   background: var(--blue);
   width: 500px;
+  height: 200px;
   overflow: hidden;
   box-shadow: 0px 0px 15px -5px;
   transition: 0.3s;

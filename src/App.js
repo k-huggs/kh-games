@@ -33,6 +33,7 @@ function App() {
           <Route path="reviews/:reviewId" element={<Review />} />
           <Route path="/welcome" element={<WelcomePage />} />
           <Route path="/*" element={<NotFound />} />
+          <Route path="/notfound" element={<NotFound />} />
           <Route path="/users" element={<UsersPage />} />
           <Route path="/categories" element={<CategoriesPage />} />
           <Route path="/register" element={<RegistrationFrom />} />

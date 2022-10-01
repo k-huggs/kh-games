@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext} from "react";
 import { UserContext } from "../../UserContext";
 
 // Styles
@@ -6,7 +6,7 @@ import {
   CommentsBtn,
   CommentsContent,
   CommentsWrapper,
-} from "./Comments.styles";
+} from "./IndividualComment.styles";
 
 // Data
 import { patchCommentLikes } from "../../utils/api";
@@ -14,17 +14,21 @@ import { patchCommentLikes } from "../../utils/api";
 // Component
 import DeleteComment from "../DeleteComment";
 
-const CommentsGrid = ({ comment, deleteComment, handleDelete }) => {
-  const [likes, setLikes] = useState(0);
+const CommentsGrid = ({ comment, handleDelete }) => {
+  const [likes, setLikes] = useState(comment.votes);
   const [loading, setLoading] = useState(false);
-  const { user } = useContext(UserContext);
+  const { user, isLoggedIn } = useContext(UserContext);
+  const [isLikeClicked, setIsLikeClicked] = useState(false)
+  const [isDislikeClicked, setIsDislikeClicked] = useState(false)
 
-  const handleLikeClick = (commentId) => {
+  const handleLikeClick = () => {
     setLoading(true);
     setLikes((currLikes) => {
       return currLikes + 1;
     });
-    patchCommentLikes(commentId, 1)
+    setIsLikeClicked(true)
+    setIsDislikeClicked(false)
+    patchCommentLikes(comment.comment_id, 1)
       .then((res) => {
         setLoading(false);
         return res;
@@ -34,12 +38,14 @@ const CommentsGrid = ({ comment, deleteComment, handleDelete }) => {
       });
   };
 
-  const handleDislikeCLick = (commentId) => {
+  const handleDislikeClick = () => {
     setLoading(true);
     setLikes((currLikes) => {
       return currLikes - 1;
     });
-    patchCommentLikes(commentId, -1)
+    setIsLikeClicked(false)
+    setIsDislikeClicked(true)
+    patchCommentLikes(comment.comment_id, -1)
       .then((res) => {
         setLoading(false);
         return res;
@@ -50,34 +56,40 @@ const CommentsGrid = ({ comment, deleteComment, handleDelete }) => {
   };
 
   return (
-    <CommentsWrapper key={comment.comment_id}>
+    <CommentsWrapper>
       <CommentsContent>
         <h3>{comment.author}</h3>
         <p className="body">{comment.body}</p>
         <p>Date Created: {comment.created_at.split("T")[0]}</p>
-        <p>Likes: {comment.votes + likes}</p>
-        <CommentsBtn>
-          <button
-            className="like"
-            onClick={(event) => {
-              event.preventDefault();
-              handleLikeClick(comment.comment_id);
-            }}
-            disabled={likes === 1}
+        <p>Likes: {likes}</p>
+       {isLoggedIn ? <CommentsBtn>
+           {isLikeClicked ? <button
+            className="like disable"
+            onClick={handleLikeClick}
+            disabled
           >
             ♥️
-          </button>
-          <button
+          </button> : <button
+            className="like"
+            onClick={handleLikeClick}
+            
+          >
+            ♥️
+          </button>}
+          {isDislikeClicked ? <button
             className="dislike"
-            onClick={(event) => {
-              event.preventDefault();
-              handleDislikeCLick(comment.comment_id);
-            }}
-            disabled={likes === 0}
+            onClick={handleDislikeClick}
+            disabled
           >
             🥱
-          </button>
-        </CommentsBtn>
+          </button> :  <button
+            className="dislike"
+            onClick={handleDislikeClick}
+            
+          >
+            🥱
+          </button>}
+        </CommentsBtn>: null}
         {comment.author === user.username ? (
           <DeleteComment
             className="delete"

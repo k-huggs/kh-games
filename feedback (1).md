@@ -21,7 +21,7 @@
 - [x] Add `required` to `textarea` to prevent form submission before adding comment text
 - [x] Indicate which way the user has voted
 - [ ] Keep aspect ratio of (or crop) images to avoid them looking "warped"
-- [ ] Remove next / prev buttons until they're implemented fully
+- [x] Remove next / prev buttons until they're implemented fully
 - [ ] Refreshing doesn’t cause an issue on sub-pages (check this once hosted)
 - [ ] Remove any errors / warnings / logs in the browser & node consoles
 - [ ] Posts / Deletions happen instantly _OR_ give user indication of loading
@@ -37,14 +37,14 @@
 
 ### Reviews
 
-- [ ] Reuse the reviews UI for the categories pages (and maybe user page too?)
+- [x] Reuse the reviews UI for the categories pages (and maybe user page too?)
 - [ ] You've made a beautiful `useReviews` hook and then filtered based on category! Don't filter reviews on the client-side
 
 ## Error Handling
 
 - [x] Nice 404 page 😂 - check the styling on wide screens though!
-- [ ] Bad category slug in url
-- [ ] Bad review_id in url
+- [x] Bad category slug in url
+- [x] Bad review_id in url
 
 ## Code
 
